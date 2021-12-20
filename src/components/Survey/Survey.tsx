@@ -2,11 +2,16 @@ import { Progress, Row } from 'antd';
 
 import styles from './Survey.module.scss';
 
-export const Survey: React.FC = ({ children }) => (
+interface ISurvey {
+  currentPage: number;
+  pagesCount: number;
+}
+
+export const Survey: React.FC<ISurvey> = ({ children, currentPage, pagesCount }) => (
   <div className={styles.surveyContainer}>
     <Progress
-      percent={20}
-      trailColor='#BDDFCB'
+      percent={Math.round(100 - (((pagesCount - currentPage) / pagesCount) * 100))}
+      trailColor='rgba(0, 0, 0, 0.05)'
       showInfo={false}
       strokeColor={{
         from: '#F3D03E',
@@ -16,7 +21,7 @@ export const Survey: React.FC = ({ children }) => (
 
     <div className={styles.surveySlide}>
       <Row justify='end' className={styles.page}>
-        1/40
+        {currentPage}/{pagesCount}
       </Row>
 
       {children}

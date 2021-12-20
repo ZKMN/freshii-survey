@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
+
+import { SurveyContainer } from './SurveyContainer';
 
 import 'styles/global.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SurveyContainer />
   </React.StrictMode>,
   document.getElementById('root'),
 );
