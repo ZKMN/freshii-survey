@@ -1,7 +1,9 @@
-export const SurveyItem = () => {
-  return (
-    <div>
-      
-    </div>
-  );
-};
+import { Navigation } from 'components';
+
+export const SurveyItem: React.FC = ({ children }) => (
+  <div>
+    {children}
+
+    <Navigation />
+  </div>
+);

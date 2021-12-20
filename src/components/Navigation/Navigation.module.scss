@@ -1,0 +1,36 @@
+.backNav {
+  border: none;
+  background-color: transparent;
+  letter-spacing: 0.3px;
+  text-decoration-line: underline;
+  font-size: 16px;
+  line-height: 18px;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.nextNav {
+  padding: 12px 18px;
+  color: #FFFFFF;
+  background: #000000;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .8);
+  }
+}
+
+.backNav,
+.nextNav {
+  outline: none;
+  cursor: pointer;
+}

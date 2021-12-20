@@ -1,8 +1,9 @@
+import { Survey, SurveyItem } from './components';
 
-
-export const App = () =>  {
-  return (
-    <main>
-    </main>
-  );
-}
+export const App = () => (
+  <Survey>
+    <SurveyItem>
+      asd
+    </SurveyItem>
+  </Survey>
+);

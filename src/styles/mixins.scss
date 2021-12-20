@@ -1,0 +1,62 @@
+@mixin xs {
+  @media screen and (max-width: 575px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (min-width: 1200px) and (max-width: 1599px) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin from-xs-to-md {
+  @media screen and (min-width: 320px) and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin from-md-to-lg {
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin three-dots($width: auto, $unit: px) {
+  max-width: #{$width}#{$unit};
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+}
+
+@mixin three-dots-and-rows($rows: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: #{$rows};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
