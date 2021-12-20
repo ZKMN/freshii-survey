@@ -1,12 +1,8 @@
 .questionContainer {
   min-height: 450px;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.active {
-  display: flex;
 }
 
 .questionSectionRow {
