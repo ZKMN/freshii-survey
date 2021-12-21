@@ -7,12 +7,11 @@ import styles from './Navigation.module.scss';
 
 interface INavigation {
   page: number;
-  pagesCount: number;
   question: TQuestion;
   setPage: (fn: (prevState: number) => number) => void;
 }
 
-export const Navigation = ({ question, page, pagesCount, setPage }: INavigation) => {
+export const Navigation = ({ question, page, setPage }: INavigation) => {
   const [context] = useContext(Context);
 
   return (
@@ -34,10 +33,10 @@ export const Navigation = ({ question, page, pagesCount, setPage }: INavigation)
 
       <button
         className={styles.nextNav}
-        onClick={() => setPage(prevState => prevState + 1)}
+        onClick={question.isLastInSurvey ? undefined : () => setPage(prevState => prevState + 1)}
         disabled={!context[question.name]?.answer}
       >
-        {page === pagesCount ? 'Send' : 'Continue'}
+        {question.isLastInSurvey ? 'Send' : 'Continue'}
       </button>
     </Row>
   );

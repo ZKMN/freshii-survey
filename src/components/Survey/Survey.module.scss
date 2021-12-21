@@ -3,9 +3,16 @@
 }
 
 .surveyContainer {
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   background-color: #BDDFCB;
 }
 
 .surveySlide {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 0 40px 50px 80px;
 }

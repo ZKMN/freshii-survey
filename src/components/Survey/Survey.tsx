@@ -10,7 +10,7 @@ interface ISurvey {
 export const Survey: React.FC<ISurvey> = ({ children, currentPage, pagesCount }) => (
   <div className={styles.surveyContainer}>
     <Progress
-      percent={Math.round(100 - (((pagesCount - currentPage) / pagesCount) * 100))}
+      percent={Math.round(100 - (((pagesCount - (currentPage - 1)) / pagesCount) * 100))}
       trailColor='rgba(0, 0, 0, 0.05)'
       showInfo={false}
       strokeColor={{

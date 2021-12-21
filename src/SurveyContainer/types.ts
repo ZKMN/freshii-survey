@@ -1,11 +1,17 @@
 export type TQuestion = {
   name: string;
-  type: string;
+  type: 'radio' | 'text';
+  infoTooltip?: string;
   sectionName: string;
   question: string;
-  variants?: { title: string; vitamins?: string[] }[];
   vitamins?: string[];
-  onGoBack?: (context: any) => void;
+  isLastInSurvey?: boolean;
+  variants?: {
+    title: string;
+    vitamins?: string[];
+    infoForModal?: string;
+  }[];
+  onGoBack?: (context: TContext) => void;
 };
 
 type TContextValue = {

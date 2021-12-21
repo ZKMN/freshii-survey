@@ -1,6 +1,6 @@
 .questionContainer {
-  min-height: 450px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -12,7 +12,6 @@
 .questionSectionName {
   font-weight: bold;
   font-size: 14px;
-  line-height: 18px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -25,16 +24,15 @@
   color: #373F41;
   font-style: normal;
   font-weight: normal;
-  font-size: 23px;
-  line-height: 32px;
+  font-size: 24px;
   letter-spacing: 0.533333px;
   text-transform: capitalize;
 }
 
 .question {
+  margin-right: 10px;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 23px;
   color: #373F41;
 }
