@@ -4,11 +4,12 @@ export type TQuestion = {
   infoTooltip?: string;
   sectionName: string;
   question: string;
-  vitamins?: string[];
+  vitaminsAdd?: string[];
   isLastInSurvey?: boolean;
   variants?: {
     title: string;
-    vitamins?: string[];
+    vitaminsAdd?: string[];
+    vitaminsRemove?: string[];
     infoForModal?: string;
     shortAnswer?: string;
   }[];
@@ -20,7 +21,8 @@ type TContextValue = {
   answer: string;
   shortAnswer?: string;
   question: string;
-  vitamins?: string[];
+  vitaminsAdd?: string[];
+  vitaminsRemove?: string[];
 }
 
 export type TContext = { [key: string]: TContextValue }

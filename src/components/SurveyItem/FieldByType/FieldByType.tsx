@@ -25,7 +25,7 @@ export const FieldByType = ({ question }: IFieldByType) => {
               name: question.name,
               answer: target.value,
               question: question.question,
-              vitamins: question.vitamins,
+              vitaminsAdd: question.vitaminsAdd,
             },
           })}
         />
@@ -45,7 +45,8 @@ export const FieldByType = ({ question }: IFieldByType) => {
                   answer: target.value,
                   question: question.question,
                   ...(variant?.shortAnswer && { shortAnswer: variant?.shortAnswer }),
-                  ...(variant?.vitamins && target.value === variant.title && { vitamins: variant?.vitamins }),
+                  ...(variant?.vitaminsAdd && target.value === variant.title && { vitaminsAdd: variant?.vitaminsAdd }),
+                  ...(variant?.vitaminsRemove && target.value === variant.title && { vitaminsRemove: variant?.vitaminsRemove }),
                 },
               })}
             >
@@ -66,7 +67,8 @@ export const FieldByType = ({ question }: IFieldByType) => {
                   name: question.name,
                   answer: variant.title,
                   question: question.question,
-                  ...(variant?.vitamins && { vitamins: variant?.vitamins }),
+                  ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
+                  ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
                 },
               })}
               >

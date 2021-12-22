@@ -12,12 +12,12 @@ const maleQuestions: TQuestion[] = [{
   { title: '15-49' },
   {
     title: '> 50',
-    vitamins: [
-      '+ VITAMIN D3 1000ui',
-      '+ CALCIUM CITRATE 250 mg am + pm',
+    vitaminsAdd: [
+      'VITAMIN D3 1000ui',
+      'CALCIUM CITRATE 250 mg am + pm',
       '+2 Magnesium CITRATE 150 mg X2',
-      '- MULTIVITAMIN',
     ],
+    vitaminsRemove: ['MULTIVITAMIN FOR MEN'],
   }],
 }];
 
@@ -31,22 +31,23 @@ const femaleAdditionalQuestions: TQuestion[] = [{
     { title: 'I am not Pregnant or not planning on getting pregnant in the next 3-6 months' },
     {
       title: 'Planning in getting pregnant in the next 3-6 months',
-      vitamins: [
-        '- TURMERIC',
-        '+ PRENATAL MULTIVITAMIN, AM',
-        '- MULTIVITAMIN',
-        '+ OMEGA (VEGAN EPA-DHA) OR FISH OIL',
+      vitaminsAdd: [
+        'PRENATAL MULTIVITAMIN, AM',
+        'OMEGA (VEGAN EPA-DHA) OR FISH OIL',
       ],
+      vitaminsRemove: ['TURMERIC'],
     }, {
       title: 'Currently Pregnant or Breast feeding',
-      vitamins: [
-        '- RHODIOLA',
-        '- ASHWAGANDHA',
-        '- PASSIONFLOWER',
-        '- MELATONIN',
-        '- VALERIAN',
-        '+ PRENATAL MULTIVITAMIN, AM',
-        '+ OMEGA (VEGAN EPA-DHA) OR FISH OIL',
+      vitaminsAdd: [
+        'PRENATAL MULTIVITAMIN, AM',
+        'OMEGA (VEGAN EPA-DHA) OR FISH OIL',
+      ],
+      vitaminsRemove: [
+        'RHODIOLA',
+        'ASHWAGANDHA',
+        'PASSIONFLOWER',
+        'MELATONIN',
+        'VALERIAN',
       ],
     }],
 }];
@@ -63,12 +64,12 @@ const femaleQuestions = (ageFemale: string): TQuestion[] => [{
   { title: '15-49' },
   {
     title: '> 50',
-    vitamins: [
-      '+ VITAMIN D3 1000ui',
-      '+ CALCIUM CITRATE 250 mg am + pm',
-      '+ MAGNESIUM CITRATE 150 mg',
-      '- MULTIVITAMIN',
+    vitaminsAdd: [
+      'VITAMIN D3 1000ui',
+      'CALCIUM CITRATE 250 mg am + pm',
+      'MAGNESIUM CITRATE 150 mg',
     ],
+    vitaminsRemove: ['MULTIVITAMIN FOR WOMEN'],
   }],
 },
 ...(ageFemale === '15-49' ? femaleAdditionalQuestions : []),
@@ -82,17 +83,16 @@ interface IConditionalQuestions {
 
 export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions): TQuestion[] => {
   const maleOrWomen = sex === 'Male' ? 'Men' : 'Women';
-  const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? '+ OMEGA (VEGAN EPA-DHA)' : '+ FISH OIL';
+  // const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? '+ OMEGA (VEGAN EPA-DHA)' : '+ FISH OIL';
 
   return [{
     name: 'name',
     type: 'text',
     sectionName: 'Section',
     question: 'What is your name?',
-    vitamins: [
-      '+ MULTIVITAMIN',
-      '+ OMEGA (VEGAN EPA-DHA)',
-      omegaOrOil,
+    vitaminsAdd: [
+      'MULTIVITAMIN',
+      'OMEGA (VEGAN EPA-DHA) OR FISH OIL',
     ],
   }, {
     name: 'sex',
@@ -100,7 +100,7 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     sectionName: 'Section',
     question: 'What is your biological sex?',
     variants: [{ title: 'Male' }, { title: 'Female' }],
-    infoTooltip: 'We need biological sex to determine the vitamins.',
+    infoTooltip: 'We need biological sex to determine the vitaminsAdd.',
   },
   ...(sex === 'Male' ? maleQuestions : []),
   ...(sex === 'Female' ? femaleQuestions(ageFemale) : []),
@@ -111,14 +111,10 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     question: 'How often do you eat 7-10 servings of fruits or vegetables per day? For reference, a serving size consists of ½ cup cooked vegetables, 1 cup raw leafy vegetables or 1 piece of fruit.',
     variants: [{
       title: 'Sometimes',
-      vitamins: [
-        `+ MULTIVITAMIN for ${maleOrWomen}`,
-      ],
+      vitaminsAdd: [`MULTIVITAMIN FOR ${maleOrWomen}`],
     }, {
       title: '1 or 2 two times',
-      vitamins: [
-        `+ MULTIVITAMIN for ${maleOrWomen}`,
-      ],
+      vitaminsAdd: [`MULTIVITAMIN FOR ${maleOrWomen}`],
     },
     { title: 'Everyday' },
     { title: 'Every second day' },
@@ -130,21 +126,25 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     question: 'Which of the following describes your diet?',
     variants: [{
       title: 'I am Vegetarian',
-      vitamins: [
-        '+ VITAMIN B12, 1000mcg, AM',
-        '+ OMEGA (VEGAN EPA-DHA)',
-        '- KERATIN, 10 mg, AM',
-        '- FISH OIL',
-        '- CERAMID, 5 mg glycosylceramides, AM',
+      vitaminsAdd: [
+        'VITAMIN B12, 1000mcg, AM',
+        'OMEGA (VEGAN EPA-DHA)',
+      ],
+      vitaminsRemove: [
+        'KERATIN, 10 mg, AM',
+        'FISH OIL',
+        'CERAMID, 5 mg glycosylceramides, AM',
       ],
     }, {
       title: 'I am Vegan',
-      vitamins: [
-        '+ VITAMIN B12, 1000mcg, AM',
-        '+ OMEGA (VEGAN EPA-DHA)',
-        '- KERATIN, 10 mg, AM',
-        '- FISH OIL',
-        '- CERAMID, 5 mg glycosylceramides, AM',
+      vitaminsAdd: [
+        'VITAMIN B12, 1000mcg, AM',
+        'OMEGA (VEGAN EPA-DHA)',
+      ],
+      vitaminsRemove: [
+        'KERATIN, 10 mg, AM',
+        'FISH OIL',
+        'CERAMID, 5 mg glycosylceramides, AM',
       ],
     },
     {
@@ -163,9 +163,9 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     question: 'I eat fish like salmon, mackarel, sardines at least twice a week.',
     variants: [{
       title: 'Yes',
-      vitamins: [
-        '- OMEGA (VEGAN EPA-DHA)' ,
-        '- FISH OIL',
+      vitaminsRemove: [
+        'OMEGA (VEGAN EPA-DHA)' ,
+        'FISH OIL',
       ],
     },
     { title: 'No' }],
@@ -177,9 +177,9 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     question: 'I eat fish like salmon, mackarel, sardines at least twice a week.',
     variants: [{
       title: 'Yes',
-      vitamins: [
-        '- OMEGA (VEGAN EPA-DHA)' ,
-        '- FISH OIL',
+      vitaminsRemove: [
+        'OMEGA (VEGAN EPA-DHA)' ,
+        'FISH OIL',
       ],
     },
     { title: 'No' }],
@@ -188,12 +188,12 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     name: 'dairyProducts,',
     type: 'buttons',
     sectionName: 'Section',
-    question: ' I eat 2 servings of dairy products, soy milk, chia or sesame seeds, kale, spinach or tofu every day',
+    question: 'I eat 2 servings of dairy products, soy milk, chia or sesame seeds, kale, spinach or tofu every day.',
     variants: [
       { title: 'Yes' },
       {
         title: 'No',
-        vitamins: ['+ CALCIUM CITRATE, 250 mg, AM'],
+        vitaminsAdd: ['CALCIUM CITRATE, 250 mg, AM'],
       }],
   }, {
     name: 'smoke',
@@ -203,7 +203,7 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     variants: [{
       title: 'Yes',
       infoForModal: 'Recommendations on daily intake',
-      vitamins: ['+ VITAMIN C, 250mg, AM'],
+      vitaminsAdd: ['VITAMIN C, 250mg, AM'],
     },
     { title: 'No' }],
   }, {
@@ -213,7 +213,7 @@ export const allQuestions = ({ sex, ageFemale, yourDiet }: IConditionalQuestions
     question: 'Are you looking to boost your metabolism or manage your weight?',
     variants: [{
       title: 'Yes',
-      vitamins: ['+ GREEN TEA EXTRACT, 400mg, AM'],
+      vitaminsAdd: ['GREEN TEA EXTRACT, 400mg, AM'],
     },
     { title: 'No' }],
   },
