@@ -1,6 +1,6 @@
 export type TQuestion = {
   name: string;
-  type: 'radio' | 'text';
+  type: 'radio' | 'text' | 'buttons';
   infoTooltip?: string;
   sectionName: string;
   question: string;
@@ -10,6 +10,7 @@ export type TQuestion = {
     title: string;
     vitamins?: string[];
     infoForModal?: string;
+    shortAnswer?: string;
   }[];
   onGoBack?: (context: TContext) => void;
 };
@@ -17,6 +18,7 @@ export type TQuestion = {
 type TContextValue = {
   name: string;
   answer: string;
+  shortAnswer?: string;
   question: string;
   vitamins?: string[];
 }

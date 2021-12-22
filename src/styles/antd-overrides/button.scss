@@ -3,7 +3,27 @@
   font-weight: 600;
   transition: none;
   letter-spacing: 0.75px;
-  
+
+  &:not(.ant-btn-primary):not(.ant-btn-link):not(.ant-btn-dangerous) {
+    width: 110px;
+    color: #000000;
+    border-color: #000000;
+    border-radius: 30px;
+    background-color: transparent;
+
+    &.active {
+      color: #FFFFFF;
+      background-color: #000000;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: #FFFFFF;
+      background-color: #000000;
+    }
+  }
+
   &.ant-btn-primary:not(.ant-btn-dangerous) {
     border-color: #249E6B;
     background-color: #249E6B;

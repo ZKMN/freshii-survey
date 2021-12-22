@@ -1,5 +1,6 @@
-import { Input, Radio } from 'antd';
+import clsx from 'clsx';
 import { useContext } from 'react';
+import { Button, Col, Input, Radio, Row } from 'antd';
 
 import { Context, TQuestion } from 'SurveyContainer';
 
@@ -42,8 +43,9 @@ export const FieldByType = ({ question }: IFieldByType) => {
                 [question.name]: {
                   name: question.name,
                   answer: target.value,
-                  vitamins: target.value === variant.title ? variant.vitamins : undefined,
                   question: question.question,
+                  ...(variant?.shortAnswer && { shortAnswer: variant?.shortAnswer }),
+                  ...(variant?.vitamins && target.value === variant.title && { vitamins: variant?.vitamins }),
                 },
               })}
             >
@@ -51,6 +53,29 @@ export const FieldByType = ({ question }: IFieldByType) => {
             </Radio>
           ))}
         </Group>
+      );
+    }
+    case('buttons'): {
+      return (
+        <Row gutter={20}>
+          {question.variants?.map(variant => (
+            <Col key={variant.title}>
+              <Button className={clsx(context[question.name]?.answer === variant.title && 'active')} size='large' onClick={() => setContext({
+                ...context,
+                [question.name]: {
+                  name: question.name,
+                  answer: variant.title,
+                  question: question.question,
+                  ...(variant?.vitamins && { vitamins: variant?.vitamins }),
+                },
+              })}
+              >
+                {variant.title}
+              </Button>
+            </Col>
+          ) )}
+
+        </Row>
       );
     }
 

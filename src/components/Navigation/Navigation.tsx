@@ -22,9 +22,7 @@ export const Navigation = ({ question, page, setPage }: INavigation) => {
         <button
           className={styles.backNav}
           onClick={() => {
-            if(question.onGoBack) {
-              question.onGoBack(context);
-            }
+            delete context[question.name];
 
             setPage(prevState => prevState - 1);
           }}

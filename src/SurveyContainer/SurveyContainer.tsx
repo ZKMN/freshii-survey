@@ -15,6 +15,7 @@ export const SurveyContainer = () => {
   const conditionalQuestions = {
     sex: context.sex?.answer as 'Male' | 'Female',
     ageFemale: context.ageFemale?.answer,
+    yourDiet: context.yourDiet?.shortAnswer as 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian',
   };
 
   const optionsArr = useMemo(() => allQuestions(conditionalQuestions), [context]);

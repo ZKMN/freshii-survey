@@ -23,7 +23,7 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
 
   useEffect(() => {
 
-    if(question.type === 'radio' && context[question.name]?.answer) {
+    if((question.type === 'radio' || question.type === 'buttons') && context[question.name]?.answer) {
       const variantInfo = question.variants?.find(v => v.title === context[question.name].answer)?.infoForModal;
 
       if(variantInfo) {
@@ -54,8 +54,12 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
               <h1 className={styles.questionTitle}>{title}</h1>
             </Row>
 
-            <Row gutter={20}>
-              <Col xs={24} lg={8} className={styles.questionMobileRow}>
+            <Row gutter={{
+              xs: 0,
+              lg: 80,
+            }}
+            >
+              <Col xs={24} lg={10} className={styles.questionMobileRow}>
 
                 <Row wrap={false}>
                   {question.infoTooltip && (
