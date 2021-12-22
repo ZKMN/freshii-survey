@@ -1,12 +1,22 @@
+@import 'styles/mixins';
+
 .questionContainer {
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
+
+  @include from-xs-to-md {
+    flex: auto;
+  }
 }
 
 .questionSectionRow {
   margin-bottom: 20px;
+
+  @include from-xs-to-md {
+    margin-bottom: 10px;
+  }
 }
 
 .questionSectionName {
@@ -18,6 +28,16 @@
 
 .questionTitleRow {
   margin-bottom: 30px;
+
+  @include from-xs-to-md {
+    margin-bottom: 15px;
+  }
+}
+
+.questionMobileRow {
+  @include from-xs-to-md {
+    margin-bottom: 40px;
+  }
 }
 
 .questionTitle {
@@ -30,7 +50,6 @@
 }
 
 .question {
-  margin-right: 10px;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

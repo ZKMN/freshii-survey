@@ -44,7 +44,7 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
           content={modalText}
         />
 
-        <Row>
+        <Row className={styles.questionMobileRow}>
           <Col flex={1}>
             <Row className={styles.questionSectionRow}>
               <p className={styles.questionSectionName}>{question.sectionName}</p>
@@ -54,21 +54,26 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
               <h1 className={styles.questionTitle}>{title}</h1>
             </Row>
 
-            <Row>
-              <Col xs={24} lg={8}>
-                <Row align='middle'>
-                  <p className={styles.question}>{question.question}</p>
+            <Row gutter={20}>
+              <Col xs={24} lg={8} className={styles.questionMobileRow}>
 
+                <Row wrap={false}>
                   {question.infoTooltip && (
-                    <Tooltip placement='bottom' title={question.infoTooltip}>
-                      <InfoCircleOutlined style={{ fontSize: 20 }} />
-                    </Tooltip>
+                    <Col style={{ marginRight: 10 }}>
+                      <Tooltip placement='right' title={question.infoTooltip}>
+                        <InfoCircleOutlined style={{ fontSize: 20 }} />
+                      </Tooltip>
+                    </Col>
                   )}
+                  <Col>
+                    <p className={styles.question}>{question.question}</p>
+                  </Col>
+
                 </Row>
 
               </Col>
 
-              <Col xs={24} lg={6}>
+              <Col flex={1}>
                 <FieldByType question={question} />
               </Col>
             </Row>

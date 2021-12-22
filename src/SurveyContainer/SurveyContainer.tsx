@@ -12,11 +12,16 @@ export const SurveyContainer = () => {
   const [showModal, setShowModal] = useState(true);
   const [context, setContext] = useState<TContext>({});
 
-  const optionsArr = useMemo(() => allQuestions({ sex: context.sex?.answer as 'Male' | 'Female' }), [context.sex?.answer]);
+  const conditionalQuestions = {
+    sex: context.sex?.answer as 'Male' | 'Female',
+    ageFemale: context.ageFemale?.answer,
+  };
+
+  const optionsArr = useMemo(() => allQuestions(conditionalQuestions), [context]);
 
   return (
     <Context.Provider value={[context, setContext]}>
-      <Survey currentPage={page} pagesCount={optionsArr.length}>
+      <Survey currentPage={page}>
 
         <ModalInfo
           showModal={showModal}

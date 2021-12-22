@@ -1,13 +1,23 @@
+@import 'styles/mixins';
+
 .page {
   padding: 10px 20px 30px 0;
+
+  @include from-xs-to-md {
+    padding-bottom: 10px;
+  }
 }
 
 .surveyContainer {
-  min-height: 450px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #BDDFCB;
+
+  @include from-xs-to-md {
+    height: auto;
+  }
 }
 
 .surveySlide {
@@ -15,4 +25,8 @@
   flex-direction: column;
   flex: 1;
   padding: 0 40px 50px 80px;
+
+  @include from-xs-to-md {
+    padding: 0 15px 20px 15px;
+  }
 }

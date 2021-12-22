@@ -14,6 +14,8 @@ interface INavigation {
 export const Navigation = ({ question, page, setPage }: INavigation) => {
   const [context] = useContext(Context);
 
+  const disableButton = !context[question.name]?.answer || context.ageFemale?.answer === '< 16' || context.ageMale?.answer === '< 16';
+
   return (
     <Row justify={page !== 1 ? 'space-between' : 'end'}>
       {page !== 1 && (
@@ -34,7 +36,7 @@ export const Navigation = ({ question, page, setPage }: INavigation) => {
       <button
         className={styles.nextNav}
         onClick={question.isLastInSurvey ? undefined : () => setPage(prevState => prevState + 1)}
-        disabled={!context[question.name]?.answer}
+        disabled={disableButton}
       >
         {question.isLastInSurvey ? 'Send' : 'Continue'}
       </button>
