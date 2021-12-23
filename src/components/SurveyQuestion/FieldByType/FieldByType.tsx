@@ -105,7 +105,10 @@ export const FieldByType = ({ question }: IFieldByType) => {
                       } else {
                         choices.push({
                           title: variant.title,
-                          ...(variant?.infoForModal && { infoForModal: variant?.infoForModal }),
+                          ...(variant?.infoForModal && {
+                            infoForModal: variant?.infoForModal,
+                            isShowInfo: true,
+                          }),
                           ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
                           ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
                         });

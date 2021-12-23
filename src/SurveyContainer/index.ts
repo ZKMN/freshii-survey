@@ -1,3 +1,3 @@
 export * from './SurveyContainer';
-export * from './surveyQuestions';
+export * from './generalQuestions';
 export * from './types';

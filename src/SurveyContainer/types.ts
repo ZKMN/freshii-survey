@@ -16,7 +16,13 @@ export type TQuestion = {
   }[];
 };
 
-type TContextValue = {
+export interface IConditionalQuestions {
+  maleOrWomen: string;
+  ageFemale: string;
+  yourDiet: 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian';
+}
+
+type TQuestionAnswer = {
   name: string;
   answer?: string;
   shortAnswer?: string;
@@ -29,8 +35,9 @@ type TContextValue = {
     vitaminsAdd?: string[];
     vitaminsRemove?: string[];
     infoForModal?: string;
+    isShowInfo?: boolean;
   }[];
 }
 
-export type TContext = { [key: string]: TContextValue }
-export type TSetContext = (data: { [key: string]: TContextValue }) => void;
+export type TContext = { [key: string]: TQuestionAnswer }
+export type TSetContext = (data: { [key: string]: TQuestionAnswer }) => void;

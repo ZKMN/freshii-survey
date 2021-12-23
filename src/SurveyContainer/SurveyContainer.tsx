@@ -3,7 +3,8 @@ import React, { useMemo, useState } from 'react';
 import { Navigation, Survey, SurveyQuestion } from 'components';
 
 import { TContext, TSetContext } from './types';
-import { allQuestions } from './surveyQuestions';
+// import { generalQuestions } from './generalQuestions';
+import { cartQuestions } from './cartQuestions';
 
 export const Context = React.createContext<[TContext, TSetContext]>([{}, () => undefined]);
 
@@ -13,14 +14,16 @@ export const SurveyContainer = () => {
   const [context, setContext] = useState<TContext>({});
 
   const conditionalQuestions = {
-    sex: context.sex?.answer as 'Male' | 'Female',
+    maleOrWomen: context.sex?.answer === 'Male' ? 'MEN' : 'WOMEN',
     ageFemale: context.ageFemale?.answer as string,
     yourDiet: context.yourDiet?.shortAnswer as 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian',
   };
 
-  const optionsArr = useMemo(() => allQuestions(conditionalQuestions), [context]);
+  const optionsArr = useMemo(() => [
+    // ...generalQuestions(conditionalQuestions),
+    ...cartQuestions(conditionalQuestions),
+  ], [context]);
 
-  // console.log(context);
   return (
     <Context.Provider value={[context, setContext]}>
       <Survey currentPage={page}>

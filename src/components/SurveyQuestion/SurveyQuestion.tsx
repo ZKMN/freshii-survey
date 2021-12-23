@@ -23,17 +23,24 @@ export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage
 
   useEffect(() => {
 
-    if(context[question.name]?.infoForModal) {
+    if(context[question.name]?.infoForModal || context[question.name]?.choices) {
       const info = context[question.name].infoForModal;
 
-      if(info) {
-        setModalText(info);
+      const infoChoice = context[question.name]?.choices?.find(choice => choice.infoForModal && choice.isShowInfo);
+      const infoModalChoice = infoChoice?.infoForModal || '';
+
+      if(info || infoModalChoice) {
+        setModalText(info || infoModalChoice);
         setShowModal(true);
+      }
+
+      if(infoChoice && infoModalChoice) {
+        infoChoice.isShowInfo = false;
       }
 
     }
 
-  }, [context[question.name]?.infoForModal]);
+  }, [context[question.name]?.infoForModal, context[question.name]?.choices?.length]);
 
   if(activePage) {
     return (

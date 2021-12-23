@@ -9,7 +9,7 @@ interface ISurvey {
 export const Survey: React.FC<ISurvey> = ({ children, currentPage }) => {
   const MAX_QUESTIONS = 25;
 
-  return(
+  return (
     <div className={styles.surveyContainer}>
       <Progress
         percent={Math.round(100 - (((MAX_QUESTIONS - (currentPage - 1)) / MAX_QUESTIONS) * 100))}
