@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useContext } from 'react';
-import { Button, Col, Input, Radio, Row } from 'antd';
+import { Button, Checkbox, Input, Radio, Row, Col } from 'antd';
 
 import { Context, TQuestion } from 'SurveyContainer';
 
@@ -46,7 +46,8 @@ export const FieldByType = ({ question }: IFieldByType) => {
                   question: question.question,
                   ...(variant?.shortAnswer && { shortAnswer: variant?.shortAnswer }),
                   ...(variant?.vitaminsAdd && target.value === variant.title && { vitaminsAdd: variant?.vitaminsAdd }),
-                  ...(variant?.vitaminsRemove && target.value === variant.title && { vitaminsRemove: variant?.vitaminsRemove }),
+                  ...(variant?.vitaminsRemove &&
+                      target.value === variant.title && { vitaminsRemove: variant?.vitaminsRemove }),
                 },
               })}
             >
@@ -61,22 +62,66 @@ export const FieldByType = ({ question }: IFieldByType) => {
         <Row gutter={20}>
           {question.variants?.map(variant => (
             <Col key={variant.title}>
-              <Button className={clsx(context[question.name]?.answer === variant.title && 'active')} size='large' onClick={() => setContext({
-                ...context,
-                [question.name]: {
-                  name: question.name,
-                  answer: variant.title,
-                  question: question.question,
-                  ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
-                  ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
-                },
-              })}
+              <Button
+                size='large'
+                className={clsx(context[question.name]?.answer === variant.title && 'active')}
+                onClick={() => setContext({
+                  ...context,
+                  [question.name]: {
+                    name: question.name,
+                    answer: variant.title,
+                    question: question.question,
+                    ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
+                    ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
+                  },
+                })}
               >
                 {variant.title}
               </Button>
             </Col>
           ) )}
 
+        </Row>
+      );
+    }
+    case('checkboxes'): {
+      return (
+        <Row>
+          <Col lg={14}>
+            <Row gutter={20}>
+              {question.variants?.map(variant => (
+                <Col xs={12} key={variant.title}>
+                  <Checkbox onChange={({ target }) => {
+                    const choices = context[question.name]?.choices || [];
+
+                    const findIndex = choices.findIndex(choice => choice.title === variant.title);
+
+                    if(findIndex > -1 && !target.checked) {
+                      choices.splice(findIndex, 1);
+                    } else {
+                      choices.push({
+                        title: variant.title,
+                        ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
+                        ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
+                      });
+                    }
+
+                    setContext({
+                      ...context,
+                      [question.name]: {
+                        name: question.name,
+                        question: question.question,
+                        ...(choices.length && { choices }),
+                      },
+                    });
+                  }}
+                  >
+                    {variant.title}
+                  </Checkbox>
+                </Col>
+              ))}
+            </Row>
+          </Col>
         </Row>
       );
     }
