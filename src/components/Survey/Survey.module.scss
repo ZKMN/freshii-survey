@@ -9,14 +9,14 @@
 }
 
 .surveyContainer {
-  height: 450px;
+  min-height: 450px;
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #BDDFCB;
 
   @include from-xs-to-md {
-    height: auto;
+    min-height: auto;
   }
 }
 

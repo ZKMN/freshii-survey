@@ -45,6 +45,7 @@ export const FieldByType = ({ question }: IFieldByType) => {
                   answer: target.value,
                   question: question.question,
                   ...(variant?.shortAnswer && { shortAnswer: variant?.shortAnswer }),
+                  ...(variant?.infoForModal && { infoForModal: variant?.infoForModal }),
                   ...(variant?.vitaminsAdd && target.value === variant.title && { vitaminsAdd: variant?.vitaminsAdd }),
                   ...(variant?.vitaminsRemove &&
                       target.value === variant.title && { vitaminsRemove: variant?.vitaminsRemove }),
@@ -71,6 +72,7 @@ export const FieldByType = ({ question }: IFieldByType) => {
                     name: question.name,
                     answer: variant.title,
                     question: question.question,
+                    ...(variant?.infoForModal && { infoForModal: variant?.infoForModal }),
                     ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
                     ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
                   },
@@ -87,34 +89,37 @@ export const FieldByType = ({ question }: IFieldByType) => {
     case('checkboxes'): {
       return (
         <Row>
-          <Col lg={14}>
+          <Col xs={24} md={question.threeCols ? 24 : 16}>
             <Row gutter={20}>
               {question.variants?.map(variant => (
-                <Col xs={12} key={variant.title}>
-                  <Checkbox onChange={({ target }) => {
-                    const choices = context[question.name]?.choices || [];
+                <Col xs={24} md={question.threeCols ? 8 : 12} key={variant.title}>
+                  <Checkbox
+                    checked={!!context[question.name]?.choices?.find(choice => choice.title === variant.title)}
+                    onChange={({ target }) => {
+                      const choices = context[question.name]?.choices || [];
 
-                    const findIndex = choices.findIndex(choice => choice.title === variant.title);
+                      const findIndex = choices.findIndex(choice => choice.title === variant.title);
 
-                    if(findIndex > -1 && !target.checked) {
-                      choices.splice(findIndex, 1);
-                    } else {
-                      choices.push({
-                        title: variant.title,
-                        ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
-                        ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
+                      if(findIndex > -1 && !target.checked) {
+                        choices.splice(findIndex, 1);
+                      } else {
+                        choices.push({
+                          title: variant.title,
+                          ...(variant?.infoForModal && { infoForModal: variant?.infoForModal }),
+                          ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
+                          ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
+                        });
+                      }
+
+                      setContext({
+                        ...context,
+                        [question.name]: {
+                          name: question.name,
+                          question: question.question,
+                          ...(choices.length && { choices }),
+                        },
                       });
-                    }
-
-                    setContext({
-                      ...context,
-                      [question.name]: {
-                        name: question.name,
-                        question: question.question,
-                        ...(choices.length && { choices }),
-                      },
-                    });
-                  }}
+                    }}
                   >
                     {variant.title}
                   </Checkbox>

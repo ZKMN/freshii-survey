@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 
-import { Navigation, Survey, SurveyItem } from 'components';
+import { Navigation, Survey, SurveyQuestion } from 'components';
 
 import { TContext, TSetContext } from './types';
 import { allQuestions } from './surveyQuestions';
@@ -20,7 +20,7 @@ export const SurveyContainer = () => {
 
   const optionsArr = useMemo(() => allQuestions(conditionalQuestions), [context]);
 
-  console.log(context);
+  // console.log(context);
   return (
     <Context.Provider value={[context, setContext]}>
       <Survey currentPage={page}>
@@ -32,7 +32,7 @@ export const SurveyContainer = () => {
         /> */}
 
         {optionsArr.map((question, index) => (
-          <SurveyItem
+          <SurveyQuestion
             key={question.name}
             question={question}
             activePage={page === index + 1}
@@ -45,7 +45,7 @@ export const SurveyContainer = () => {
               question={question}
             />
 
-          </SurveyItem>
+          </SurveyQuestion>
         ))}
 
       </Survey>

@@ -5,6 +5,7 @@ export type TQuestion = {
   sectionName: string;
   question: string;
   vitaminsAdd?: string[];
+  threeCols?: boolean;
   isLastInSurvey?: boolean;
   variants?: {
     title: string;
@@ -22,10 +23,12 @@ type TContextValue = {
   question: string;
   vitaminsAdd?: string[];
   vitaminsRemove?: string[];
+  infoForModal?: string;
   choices?: {
     title: string;
     vitaminsAdd?: string[];
     vitaminsRemove?: string[];
+    infoForModal?: string;
   }[];
 }
 

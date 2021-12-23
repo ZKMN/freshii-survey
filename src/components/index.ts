@@ -1,4 +1,4 @@
 export * from './Survey';
-export * from './SurveyItem';
+export * from './SurveyQuestion';
 export * from './Navigation';
 export * from './ModalInfo';

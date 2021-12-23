@@ -7,15 +7,15 @@ import { Context, TQuestion } from 'SurveyContainer';
 
 import { FieldByType } from './FieldByType';
 
-import styles from './SurveyItem.module.scss';
+import styles from './SurveyQuestion.module.scss';
 
-interface ISurveyItem {
+interface ISurveyQuestion {
   title: string;
   question: TQuestion;
   activePage: boolean;
 }
 
-export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, question, title } ) => {
+export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage, question, title } ) => {
   const [context] = useContext(Context);
 
   const [modalText, setModalText] = useState('');
@@ -23,17 +23,17 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
 
   useEffect(() => {
 
-    if((question.type === 'radio' || question.type === 'buttons') && context[question.name]?.answer) {
-      const variantInfo = question.variants?.find(v => v.title === context[question.name].answer)?.infoForModal;
+    if(context[question.name]?.infoForModal) {
+      const info = context[question.name].infoForModal;
 
-      if(variantInfo) {
-        setModalText(variantInfo);
+      if(info) {
+        setModalText(info);
         setShowModal(true);
       }
 
     }
 
-  }, [context[question.name]?.answer]);
+  }, [context[question.name]?.infoForModal]);
 
   if(activePage) {
     return (
@@ -50,18 +50,19 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
               <p className={styles.questionSectionName}>{question.sectionName}</p>
             </Row>
 
-            <Row className={styles.questionTitleRow}>
-              <h1 className={styles.questionTitle}>{title}</h1>
-            </Row>
-
-            <Row gutter={{
-              xs: 0,
-              lg: 80,
-            }}
+            <Row
+              gutter={{
+                xs: 0,
+                lg: 80,
+              }}
             >
-              <Col xs={24} lg={10} className={styles.questionMobileRow}>
 
-                <Row wrap={false}>
+              <Col xs={24} lg={10} className={styles.questionMobileRow}>
+                <Row className={styles.questionTitleRow}>
+                  <h1 className={styles.questionTitle}>{title}</h1>
+                </Row>
+
+                <Row>
                   {question.infoTooltip && (
                     <Col style={{ marginRight: 10 }}>
                       <Tooltip placement='right' title={question.infoTooltip}>
@@ -72,14 +73,13 @@ export const SurveyItem: React.FC<ISurveyItem> = ({ children, activePage, questi
                   <Col>
                     <p className={styles.question}>{question.question}</p>
                   </Col>
-
                 </Row>
-
               </Col>
 
-              <Col flex={1}>
+              <Col xs={24} lg={14}>
                 <FieldByType question={question} />
               </Col>
+
             </Row>
           </Col>
 
