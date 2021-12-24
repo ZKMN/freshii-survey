@@ -14,36 +14,32 @@
   height: 25px;
   background-color: transparent;
   border-color: #000000;
+  border-width: 2px;
 
   &::after {
+    width: 25px;
+    height: 25px;
+    transform: scale(1) translate(-50%, -50%);
+    margin: 0;
+    transition: none;
     background-color: #000000;
   }
 }
 
-.ant-radio-inner {
-  border-color: #000000;
-
+.ant-radio-checked {
   &::after {
-    width: 25px;
-    height: 25px;
-    transform: scale(1) translate(-50%, -50%);
-    margin: 0;
+    border-color: #000000;
     transition: none;
+    animation: none;
   }
-}
 
-.ant-radio-checked .ant-radio-inner {
-  &::after {
-    width: 25px;
-    height: 25px;
-    transform: scale(1) translate(-50%, -50%);
-    margin: 0;
-    transition: none;
+  .ant-radio-inner {
+    &::after {
+      width: 25px;
+      height: 25px;
+      transform: scale(1) translate(-50%, -50%);
+      margin: 0;
+      transition: none;
+    }
   }
-}
-
-.ant-radio-checked::after {
-  border-color: #000000;
-  transition: none;
-  animation: none;
 }

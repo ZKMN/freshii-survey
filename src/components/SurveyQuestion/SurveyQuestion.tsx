@@ -8,6 +8,7 @@ import { Context, TQuestion } from 'SurveyContainer';
 import { FieldByType } from './FieldByType';
 
 import styles from './SurveyQuestion.module.scss';
+import clsx from 'clsx';
 
 interface ISurveyQuestion {
   title: string;
@@ -57,19 +58,14 @@ export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage
               <p className={styles.questionSectionName}>{question.sectionName}</p>
             </Row>
 
-            <Row
-              gutter={{
-                xs: 0,
-                lg: 80,
-              }}
-            >
+            <Row>
 
-              <Col xs={24} lg={10} className={styles.questionMobileRow}>
+              <Col xs={24} lg={10} className={styles.questionTitleContainer}>
                 <Row className={styles.questionTitleRow}>
                   <h1 className={styles.questionTitle}>{title}</h1>
                 </Row>
 
-                <Row>
+                <Row wrap={false}>
                   {question.infoTooltip && (
                     <Col style={{ marginRight: 10 }}>
                       <Tooltip placement='right' title={question.infoTooltip}>
@@ -83,7 +79,7 @@ export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage
                 </Row>
               </Col>
 
-              <Col xs={24} lg={14}>
+              <Col xs={24} lg={14} className={clsx(question.type !== 'checkboxes' && styles.questionAnswersContainer)}>
                 <FieldByType question={question} />
               </Col>
 

@@ -16,7 +16,7 @@ export const Navigation = ({ question, page, setPage }: INavigation) => {
 
   const disableButton =
     (!context[question.name]?.answer && !context[question.name]?.choices?.length) ||
-    context.ageFemale?.answer === '< 16' ||
+    context.ageWomen?.answer === '< 16' ||
     context.ageMale?.answer === '< 16';
 
   return (

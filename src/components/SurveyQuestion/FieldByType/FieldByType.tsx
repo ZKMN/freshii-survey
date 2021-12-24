@@ -111,6 +111,7 @@ export const FieldByType = ({ question }: IFieldByType) => {
                           }),
                           ...(variant?.vitaminsAdd && { vitaminsAdd: variant?.vitaminsAdd }),
                           ...(variant?.vitaminsRemove && { vitaminsRemove: variant?.vitaminsRemove }),
+                          ...(variant?.additionalQuestions && { additionalQuestions: variant?.additionalQuestions }),
                         });
                       }
 

@@ -52,8 +52,8 @@ const femaleAdditionalQuestions: TQuestion[] = [{
     }],
 }];
 
-const womenQuestions = (ageFemale: string): TQuestion[] => [{
-  name: 'ageFemale',
+const womenQuestions = (ageWomen?: string): TQuestion[] => [{
+  name: 'ageWomen',
   type: 'radio',
   sectionName: 'Section',
   question: 'What is your age?',
@@ -72,10 +72,10 @@ const womenQuestions = (ageFemale: string): TQuestion[] => [{
     vitaminsRemove: ['MULTIVITAMIN FOR WOMEN'],
   }],
 },
-...(ageFemale === '15-49' ? femaleAdditionalQuestions : []),
+...(ageWomen === '15-49' ? femaleAdditionalQuestions : []),
 ];
 
-export const generalQuestions = ({ maleOrWomen, ageFemale, yourDiet }: IConditionalQuestions): TQuestion[] => [{
+export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: IConditionalQuestions): TQuestion[] => [{
   name: 'name',
   type: 'text',
   sectionName: 'Section',
@@ -93,7 +93,7 @@ export const generalQuestions = ({ maleOrWomen, ageFemale, yourDiet }: IConditio
   infoTooltip: 'We need biological sex to determine the vitaminsAdd.',
 },
 ...(maleOrWomen === 'MEN' ? menQuestions : []),
-...(maleOrWomen === 'WOMEN' ? womenQuestions(ageFemale) : []),
+...(maleOrWomen === 'WOMEN' ? womenQuestions(ageWomen) : []),
 {
   name: 'fruitsOrVegetables',
   type: 'radio',

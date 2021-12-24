@@ -1,7 +1,17 @@
+import { immunity, memoryAttention } from './cartAddQuestions';
 import { IConditionalQuestions, TQuestion } from './types';
 
-export const cartQuestions = ({ maleOrWomen, yourDiet }: IConditionalQuestions): TQuestion[] => {
+export const cartQuestions = ({ maleOrWomen, yourDiet, healthPriorChoices }: IConditionalQuestions): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL';
+
+  const addQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
+
+    if(choice.additionalQuestions) {
+      acc = [...acc, ...choice.additionalQuestions];
+    }
+
+    return acc;
+  }, []);
 
   return [{
     name: 'healthPriorities',
@@ -16,8 +26,21 @@ export const cartQuestions = ({ maleOrWomen, yourDiet }: IConditionalQuestions):
         omegaOrOil,
       ],
       vitaminsRemove: ['IRON'],
+    }, {
+      title: 'Immunity',
+      vitaminsAdd: [
+        'PROBIOTIC',
+        'VITAMIN D3 400ui, AM',
+      ],
+      additionalQuestions: immunity,
+    }, {
+      title: 'Memory & Attention',
+      vitaminsAdd: [omegaOrOil],
+      additionalQuestions: memoryAttention(omegaOrOil),
     }],
-  }, {
+  },
+  ...(addQuestions || []),
+  {
     name: 'stub',
     type: 'radio',
     sectionName: 'stub',

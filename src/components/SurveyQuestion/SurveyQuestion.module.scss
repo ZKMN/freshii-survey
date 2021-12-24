@@ -34,9 +34,26 @@
   }
 }
 
+.questionTitleContainer {
+  padding-right: 60px;
+
+  @include from-xs-to-md {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.questionAnswersContainer {
+  padding-top: 30px;
+
+  @include from-xs-to-md {
+    padding-top: 0;
+  }
+}
+
 .questionMobileRow {
   @include from-xs-to-md {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 }
 

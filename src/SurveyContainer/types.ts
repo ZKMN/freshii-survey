@@ -1,3 +1,23 @@
+type TChoice = {
+  title: string;
+  vitaminsAdd?: string[];
+  vitaminsRemove?: string[];
+  infoForModal?: string;
+  isShowInfo?: boolean;
+  additionalQuestions?: TQuestion[];
+}
+
+type TQuestionAnswer = {
+  name: string;
+  answer?: string;
+  shortAnswer?: string;
+  question: string;
+  vitaminsAdd?: string[];
+  vitaminsRemove?: string[];
+  infoForModal?: string;
+  choices?: TChoice[];
+}
+
 export type TQuestion = {
   name: string;
   type: 'radio' | 'text' | 'buttons' | 'checkboxes';
@@ -13,30 +33,15 @@ export type TQuestion = {
     vitaminsRemove?: string[];
     infoForModal?: string;
     shortAnswer?: string;
+    additionalQuestions?: TQuestion[];
   }[];
 };
 
 export interface IConditionalQuestions {
   maleOrWomen: string;
-  ageFemale: string;
   yourDiet: 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian';
-}
-
-type TQuestionAnswer = {
-  name: string;
-  answer?: string;
-  shortAnswer?: string;
-  question: string;
-  vitaminsAdd?: string[];
-  vitaminsRemove?: string[];
-  infoForModal?: string;
-  choices?: {
-    title: string;
-    vitaminsAdd?: string[];
-    vitaminsRemove?: string[];
-    infoForModal?: string;
-    isShowInfo?: boolean;
-  }[];
+  ageWomen?: string;
+  healthPriorChoices?: TChoice[];
 }
 
 export type TContext = { [key: string]: TQuestionAnswer }
