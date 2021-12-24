@@ -14,8 +14,8 @@ const menQuestions: TQuestion[] = [{
     title: '> 50',
     vitaminsAdd: [
       'VITAMIN D3 1000ui',
-      'CALCIUM CITRATE 250 mg am + pm',
-      '+2 Magnesium CITRATE 150 mg X2',
+      'CALCIUM CITRATE 250mg, AM + PM',
+      '+2 MAGNESIUM CITRATE 150mg X2',
     ],
     vitaminsRemove: ['MULTIVITAMIN FOR MEN'],
   }],
@@ -44,9 +44,9 @@ const femaleAdditionalQuestions: TQuestion[] = [{
       ],
       vitaminsRemove: [
         'RHODIOLA',
-        'ASHWAGANDHA',
+        'ASHWAGANDHA 250mg, AM',
         'PASSIONFLOWER',
-        'MELATONIN',
+        'MELATONIN 5mg, PM',
         'VALERIAN',
       ],
     }],
@@ -66,8 +66,8 @@ const womenQuestions = (ageWomen?: string): TQuestion[] => [{
     title: '> 50',
     vitaminsAdd: [
       'VITAMIN D3 1000ui',
-      'CALCIUM CITRATE 250 mg am + pm',
-      'MAGNESIUM CITRATE 150 mg',
+      'CALCIUM CITRATE 250mg AM + PM',
+      'MAGNESIUM CITRATE 150mg',
     ],
     vitaminsRemove: ['MULTIVITAMIN FOR WOMEN'],
   }],
@@ -116,19 +116,19 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   question: 'Which of the following describes your diet?',
   variants: [{
     title: 'I am Vegetarian',
-    vitaminsAdd: ['VITAMIN B12, 1000mcg, AM'],
+    vitaminsAdd: ['VITAMIN B12 1000mcg, AM'],
     vitaminsRemove: [
-      'KERATIN, 10 mg, AM',
+      'KERATIN 10mg, AM',
       'FISH OIL',
-      'CERAMID, 5 mg GLYCOSYLCERAMIDES, AM',
+      'CERAMID 5mg GLYCOSYLCERAMIDES, AM',
     ],
   }, {
     title: 'I am Vegan',
-    vitaminsAdd: ['VITAMIN B12, 1000mcg, AM'],
+    vitaminsAdd: ['VITAMIN B12 1000mcg, AM'],
     vitaminsRemove: [
-      'KERATIN, 10 mg, AM',
+      'KERATIN 10mg, AM',
       'FISH OIL',
-      'CERAMID, 5 mg GLYCOSYLCERAMIDES, AM',
+      'CERAMID 5mg GLYCOSYLCERAMIDES, AM',
     ],
   },
   {
@@ -177,7 +177,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     { title: 'Yes' },
     {
       title: 'No',
-      vitaminsAdd: ['CALCIUM CITRATE, 250 mg, AM'],
+      vitaminsAdd: ['CALCIUM CITRATE 250mg, AM'],
     }],
 }, {
   name: 'smoke',
@@ -187,7 +187,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   variants: [{
     title: 'Yes',
     infoForModal: 'Recommendations on daily intake',
-    vitaminsAdd: ['VITAMIN C, 250mg, AM'],
+    vitaminsAdd: ['VITAMIN C 250mg, AM'],
   },
   { title: 'No' }],
 }, {
@@ -197,7 +197,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   question: 'Are you looking to boost your metabolism or manage your weight?',
   variants: [{
     title: 'Yes',
-    vitaminsAdd: ['GREEN TEA EXTRACT, 400mg, AM'],
+    vitaminsAdd: ['GREEN TEA EXTRACT 400mg, AM'],
   },
   { title: 'No' }],
 }, {
@@ -237,10 +237,10 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     vitaminsAdd: ['PROBIOTICS'],
   }, {
     title: 'Dementia',
-    vitaminsRemove: ['Melatonin'],
+    vitaminsRemove: ['MELATONIN 5mg, PM'],
   }, {
     title: 'Thyroid hormones',
-    vitaminsRemove: ['ASHWAGANDHA'],
+    vitaminsRemove: ['ASHWAGANDHA 250mg, AM'],
     infoForModal: 'Allow a delay of 2 hours before or after taking Calcium and Magnesium, Zinc',
   }, {
     title: 'Liver disease',
@@ -262,7 +262,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     vitaminsAdd: ['VITAMIN D3 1000ui'],
   }, {
     title: 'Epilepsy',
-    vitaminsRemove: ['Melatonin'],
+    vitaminsRemove: ['MELATONIN 5mg, PM'],
   }, {
     title: 'Immunosuppresion or Cancer',
     infoForModal: 'Based on your condition, it is safe that you consult your healthcare provider for a supplements recommendation that is right for you.',

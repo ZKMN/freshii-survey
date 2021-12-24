@@ -1,7 +1,7 @@
-import { immunity, memoryAttention } from './cartAddQuestions';
+import { cvHealth, energy, immunity, memoryAttention, sleep, stress } from './cartAddQuestions';
 import { ICommonAnswers, TQuestion } from './types';
 
-export const cartQuestions = ({ maleOrWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
+export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL';
 
   const addQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
@@ -25,7 +25,7 @@ export const cartQuestions = ({ maleOrWomen, yourDiet, healthPriorChoices }: ICo
         `MULTIVITAMIN FOR ${maleOrWomen}`,
         omegaOrOil,
       ],
-      vitaminsRemove: ['IRON'],
+      vitaminsRemove: ['IRON 10mg, PM'],
     }, {
       title: 'Immunity',
       vitaminsAdd: [
@@ -37,6 +37,28 @@ export const cartQuestions = ({ maleOrWomen, yourDiet, healthPriorChoices }: ICo
       title: 'Memory & Attention',
       vitaminsAdd: [omegaOrOil],
       additionalQuestions: memoryAttention(omegaOrOil),
+    }, {
+      title: 'Energy',
+      vitaminsAdd: ['B COMPLEX, AM'],
+      additionalQuestions: sleep({
+        ageWomen,
+        maleOrWomen,
+      }),
+    }, {
+      title: 'Sleep',
+      vitaminsAdd: ['MELATONIN 5mg, PM'],
+      additionalQuestions: energy,
+    }, {
+      title: 'Stress',
+      vitaminsAdd: [
+        'B COMPLEX, AM',
+        'ASHWAGANDHA 250mg, AM',
+      ],
+      additionalQuestions: stress,
+    }, {
+      title: 'CV Health',
+      vitaminsAdd: [omegaOrOil],
+      additionalQuestions: cvHealth,
     }],
   },
   ...(addQuestions || []),

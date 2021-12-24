@@ -38,9 +38,9 @@ export type TQuestion = {
 };
 
 export interface ICommonAnswers {
-  maleOrWomen: string;
+  maleOrWomen: 'MEN' | 'WOMEN';
   yourDiet: 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian';
-  ageWomen?: string;
+  ageWomen?: '< 16' | '15-49' | '> 50';
   healthPriorChoices?: TChoice[];
 }
 

@@ -2,8 +2,8 @@ import React, { useMemo, useState } from 'react';
 
 import { Navigation, Survey, SurveyQuestion } from 'components';
 
-import { TContext, TSetContext } from './types';
-// import { generalQuestions } from './generalQuestions';
+import { ICommonAnswers, TContext, TSetContext } from './types';
+import { generalQuestions } from './generalQuestions';
 import { cartQuestions } from './cartQuestions';
 
 export const Context = React.createContext<[TContext, TSetContext]>([{}, () => undefined]);
@@ -13,23 +13,21 @@ export const SurveyContainer = () => {
   // const [showModal, setShowModal] = useState(true);
   const [context, setContext] = useState<TContext>({});
 
-  const commonAnswers = {
+  const commonAnswers: ICommonAnswers = {
     maleOrWomen: context.sex?.answer === 'Male' ? 'MEN' : 'WOMEN',
-    yourDiet: context.yourDiet?.shortAnswer as 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian',
+    yourDiet: context.yourDiet?.shortAnswer as ICommonAnswers['yourDiet'],
+    ageWomen: context.ageWomen?.answer as ICommonAnswers['ageWomen'],
   };
 
   const optionsArr = useMemo(() => [
-    // ...generalQuestions({
-    //   ...commonAnswers,
-    //   ageWomen: context.ageWomen?.answer as string,
-    // }),
+    // ...generalQuestions(commonAnswers),
     ...cartQuestions({
       ...commonAnswers,
       healthPriorChoices: context.healthPriorities?.choices,
     }),
   ], [context]);
 
-  // console.log(context);
+  console.log(context);
   return (
     <Context.Provider value={[context, setContext]}>
       <Survey currentPage={page}>
