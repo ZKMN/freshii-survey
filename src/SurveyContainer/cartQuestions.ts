@@ -1,7 +1,7 @@
 import { immunity, memoryAttention } from './cartAddQuestions';
-import { IConditionalQuestions, TQuestion } from './types';
+import { ICommonAnswers, TQuestion } from './types';
 
-export const cartQuestions = ({ maleOrWomen, yourDiet, healthPriorChoices }: IConditionalQuestions): TQuestion[] => {
+export const cartQuestions = ({ maleOrWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL';
 
   const addQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {

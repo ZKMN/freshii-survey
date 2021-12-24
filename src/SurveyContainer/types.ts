@@ -37,7 +37,7 @@ export type TQuestion = {
   }[];
 };
 
-export interface IConditionalQuestions {
+export interface ICommonAnswers {
   maleOrWomen: string;
   yourDiet: 'vegan' | 'vegetarian' | 'flexatarian' | 'pescatarian';
   ageWomen?: string;

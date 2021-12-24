@@ -1,4 +1,4 @@
-import { IConditionalQuestions, TQuestion } from './types';
+import { ICommonAnswers, TQuestion } from './types';
 
 const menQuestions: TQuestion[] = [{
   name: 'ageMale',
@@ -75,7 +75,7 @@ const womenQuestions = (ageWomen?: string): TQuestion[] => [{
 ...(ageWomen === '15-49' ? femaleAdditionalQuestions : []),
 ];
 
-export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: IConditionalQuestions): TQuestion[] => [{
+export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAnswers): TQuestion[] => [{
   name: 'name',
   type: 'text',
   sectionName: 'Section',
