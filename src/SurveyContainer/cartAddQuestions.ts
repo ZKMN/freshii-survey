@@ -10,7 +10,7 @@ export const immunity: TQuestion[] = [{
     vitaminsAdd: [
       'VITAMIN C 500mg',
       'ZINC SULFATE 100mg, AM',
-      '+2 ECHINACEA PURPURA(6:1 root extract) 125mg / 750mg, (AM&PM)',
+      '+2 ECHINACEA PURPURA(6:1 root extract) 125mg/750mg, AM + PM',
     ],
   },
   { title: 'No' }],

@@ -1,5 +1,6 @@
-import { cvHealth, energy, immunity, memoryAttention, sleep, stress } from './cartAddQuestions';
 import { ICommonAnswers, TQuestion } from './types';
+
+import { cvHealth, energy, immunity, memoryAttention, sleep, stress } from './cartAddQuestions';
 
 export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL';

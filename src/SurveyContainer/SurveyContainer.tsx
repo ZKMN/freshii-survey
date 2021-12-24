@@ -2,9 +2,9 @@ import React, { useMemo, useState } from 'react';
 
 import { Navigation, Survey, SurveyQuestion } from 'components';
 
-import { ICommonAnswers, TContext, TSetContext } from './types';
-import { generalQuestions } from './generalQuestions';
 import { cartQuestions } from './cartQuestions';
+// import { generalQuestions } from './generalQuestions';
+import { ICommonAnswers, TContext, TSetContext } from './types';
 
 export const Context = React.createContext<[TContext, TSetContext]>([{}, () => undefined]);
 

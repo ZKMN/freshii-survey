@@ -66,7 +66,7 @@ const womenQuestions = (ageWomen?: string): TQuestion[] => [{
     title: '> 50',
     vitaminsAdd: [
       'VITAMIN D3 1000ui',
-      'CALCIUM CITRATE 250mg AM + PM',
+      'CALCIUM CITRATE 250mg, AM + PM',
       'MAGNESIUM CITRATE 150mg',
     ],
     vitaminsRemove: ['MULTIVITAMIN FOR WOMEN'],
@@ -269,7 +269,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   }, {
     title: 'Blood thinner, Anticoagulants (ie. warfarin, NOAC) or Antiplatelets (ie. aspirin, ASA)',
     vitaminsRemove: [
-      'GARLIC',
+      'GARLIC 1500mg, AM',
       'OMEGA (VEGAN EPA-DHA)',
       'TURMERIC',
       'GINGKO',
