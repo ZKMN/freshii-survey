@@ -1,11 +1,11 @@
 import { ICommonAnswers, TQuestion } from './types';
 
-import { cvHealth, energy, immunity, jointHealth, memoryAttention, sleep, stress } from './cartAddQuestions';
+import { cvHealth, energy, immunity, jointHealth, memoryAttention, sleep, stress } from './cartAdditionalQuestions';
 
 export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL 1200mg, AM';
 
-  const addQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
+  const additionalQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
 
     if(choice.additionalQuestions) {
       acc = [...acc, ...choice.additionalQuestions];
@@ -78,7 +78,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }],
   },
   ...highestPriority,
-  ...addQuestions,
+  ...additionalQuestions,
   {
     name: 'stub',
     type: 'radio',
