@@ -3,7 +3,7 @@ import { ICommonAnswers, TQuestion } from './types';
 import { cvHealth, energy, immunity, jointHealth, memoryAttention, sleep, stress } from './cartAddQuestions';
 
 export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
-  const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL';
+  const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL 1200mg, AM';
 
   const addQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
 

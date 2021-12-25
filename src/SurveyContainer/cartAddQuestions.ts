@@ -19,17 +19,29 @@ export const immunity: TQuestion[] = [{
   type: 'buttons',
   sectionName: 'Section',
   question: 'Are you often around young children, elderly people, or immunocompromised people?',
-  variants: [
-    { title: 'Yes' }, // TODO: ask for answers
-    { title: 'No' }],
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: [
+      'VITAMIN C 500mg',
+      'ZINC SULFATE 100mg, AM',
+      '+2 ECHINACEA PURPURA(6:1 root extract) 125mg/750mg, AM + PM',
+    ],
+  },
+  { title: 'No' }],
 }, {
   name: 'oftenPublic',
   type: 'buttons',
   sectionName: 'Section',
   question: 'Do you often take public transportations or spend time in spaces where you are in close contact with large groups?',
-  variants: [
-    { title: 'Yes' }, // TODO: ask for answers
-    { title: 'No' }],
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: [
+      'VITAMIN C 500mg',
+      'ZINC SULFATE 100mg, AM',
+      '+2 ECHINACEA PURPURA(6:1 root extract) 125mg/750mg, AM + PM',
+    ],
+  },
+  { title: 'No' }],
 }];
 
 export const memoryAttention = (omegaOrOil: string): TQuestion[] => [{

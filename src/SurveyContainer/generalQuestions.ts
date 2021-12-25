@@ -33,14 +33,14 @@ const femaleAdditionalQuestions: TQuestion[] = [{
       title: 'Planning in getting pregnant in the next 3-6 months',
       vitaminsAdd: [
         'PRENATAL MULTIVITAMIN, AM',
-        'OMEGA (VEGAN EPA-DHA) OR FISH OIL',
+        'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
       ],
-      vitaminsRemove: ['TURMERIC'],
+      vitaminsRemove: ['TURMERIC 1000mg, AM'],
     }, {
       title: 'Currently Pregnant or Breast feeding',
       vitaminsAdd: [
         'PRENATAL MULTIVITAMIN, AM',
-        'OMEGA (VEGAN EPA-DHA) OR FISH OIL',
+        'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
       ],
       vitaminsRemove: [
         'RHODIOLA',
@@ -82,7 +82,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   question: 'What is your name?',
   vitaminsAdd: [
     'MULTIVITAMIN',
-    'OMEGA (VEGAN EPA-DHA) OR FISH OIL',
+    'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
   ],
 }, {
   name: 'sex',
@@ -119,7 +119,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     vitaminsAdd: ['VITAMIN B12 1000mcg, AM'],
     vitaminsRemove: [
       'KERATIN 10mg, AM',
-      'FISH OIL',
+      'FISH OIL 1200mg, AM',
       'CERAMID 5mg GLYCOSYLCERAMIDES, AM',
     ],
   }, {
@@ -127,7 +127,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     vitaminsAdd: ['VITAMIN B12 1000mcg, AM'],
     vitaminsRemove: [
       'KERATIN 10mg, AM',
-      'FISH OIL',
+      'FISH OIL 1200mg, AM',
       'CERAMID 5mg GLYCOSYLCERAMIDES, AM',
     ],
   },
@@ -149,7 +149,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     title: 'Yes',
     vitaminsRemove: [
       'OMEGA (VEGAN EPA-DHA)' ,
-      'FISH OIL',
+      'FISH OIL 1200mg, AM',
     ],
   },
   { title: 'No' }],
@@ -163,7 +163,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     title: 'Yes',
     vitaminsRemove: [
       'OMEGA (VEGAN EPA-DHA)' ,
-      'FISH OIL',
+      'FISH OIL 1200mg, AM',
     ],
   },
   { title: 'No' }],
@@ -271,7 +271,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     vitaminsRemove: [
       'GARLIC 1500mg, AM',
       'OMEGA (VEGAN EPA-DHA)',
-      'TURMERIC',
+      'TURMERIC 1000mg, AM',
       'GINGKO',
       'GINGER',
     ],
