@@ -8,10 +8,11 @@ import styles from './Navigation.module.scss';
 interface INavigation {
   page: number;
   question: TQuestion;
+  isLastQuestion: boolean;
   setPage: (fn: (prevState: number) => number) => void;
 }
 
-export const Navigation = ({ question, page, setPage }: INavigation) => {
+export const Navigation = ({ isLastQuestion, question, page, setPage }: INavigation) => {
   const [context] = useContext(Context);
 
   const disableButton =
@@ -36,10 +37,10 @@ export const Navigation = ({ question, page, setPage }: INavigation) => {
 
       <button
         className={styles.nextNav}
-        onClick={question.isLastInSurvey ? undefined : () => setPage(prevState => prevState + 1)}
+        onClick={isLastQuestion ? undefined : () => setPage(prevState => prevState + 1)}
         disabled={disableButton}
       >
-        {question.isLastInSurvey ? 'Send' : 'Continue'}
+        {isLastQuestion ? 'Submit' : 'Continue'}
       </button>
     </Row>
   );

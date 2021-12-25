@@ -26,7 +26,6 @@ export type TQuestion = {
   question: string;
   vitaminsAdd?: string[];
   threeCols?: boolean;
-  isLastInSurvey?: boolean;
   variants?: {
     title: string;
     vitaminsAdd?: string[];

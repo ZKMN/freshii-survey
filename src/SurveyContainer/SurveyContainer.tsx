@@ -27,7 +27,7 @@ export const SurveyContainer = () => {
     }),
   ], [context]);
 
-  console.log(context);
+  // console.log(context);
   return (
     <Context.Provider value={[context, setContext]}>
       <Survey currentPage={page}>
@@ -38,7 +38,7 @@ export const SurveyContainer = () => {
           content='Nice to meet you! Let’s take some time to get to know you better. It’ll only take 5 minutes!'
         /> */}
 
-        {optionsArr.map((question, index) => (
+        {optionsArr.map((question, index, arr) => (
           <SurveyQuestion
             key={question.name}
             question={question}
@@ -50,6 +50,7 @@ export const SurveyContainer = () => {
               page={page}
               setPage={setPage}
               question={question}
+              isLastQuestion={index + 1 === arr.length}
             />
 
           </SurveyQuestion>

@@ -1,6 +1,6 @@
 import { ICommonAnswers, TQuestion } from './types';
 
-import { cvHealth, energy, immunity, memoryAttention, sleep, stress } from './cartAddQuestions';
+import { cvHealth, energy, immunity, jointHealth, memoryAttention, sleep, stress } from './cartAddQuestions';
 
 export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL';
@@ -12,7 +12,15 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }
 
     return acc;
-  }, []);
+  }, []) || [];
+
+  const highestPriority: TQuestion[] = (healthPriorChoices && healthPriorChoices.length > 4) ? [{
+    name: 'highestPriority',
+    type: 'radio',
+    sectionName: 'Section',
+    question: 'Which priority is at the top of your list?',
+    variants: healthPriorChoices.map(choice => ({ title: choice.title })),
+  }] : [];
 
   return [{
     name: 'healthPriorities',
@@ -60,9 +68,17 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
       title: 'CV Health',
       vitaminsAdd: [omegaOrOil],
       additionalQuestions: cvHealth,
+    }, {
+      title: 'Joint Health',
+      vitaminsAdd: [
+        omegaOrOil,
+        'GLUCOSAMINE 500mg, AM',
+      ],
+      additionalQuestions: jointHealth,
     }],
   },
-  ...(addQuestions || []),
+  ...highestPriority,
+  ...addQuestions,
   {
     name: 'stub',
     type: 'radio',

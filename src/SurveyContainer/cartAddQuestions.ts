@@ -46,7 +46,7 @@ export const memoryAttention = (omegaOrOil: string): TQuestion[] => [{
   name: 'troubleFocusing',
   type: 'buttons',
   sectionName: 'Section',
-  question: 'Do you have have troubles focusing, concentrating, and maintaining you attention?',
+  question: 'Do you have troubles focusing, concentrating, and maintaining you attention?',
   variants: [{
     title: 'Yes',
     vitaminsAdd: [
@@ -102,7 +102,7 @@ export const energy: TQuestion[] = [{
 }];
 
 export const sleep = ({ ageWomen, maleOrWomen }: Omit<ICommonAnswers, 'yourDiet'>): TQuestion[] => {
-  const fallingAsleep = (ageWomen === '> 50' || maleOrWomen === 'MEN') ? '+2 MAGNESIUM 150mg, PM' : 'MAGNESIUM 150mg, PM';
+  const magnesium = (ageWomen === '> 50' || maleOrWomen === 'MEN') ? '+2 MAGNESIUM 150mg, PM' : 'MAGNESIUM 150mg, PM';
 
   return [{
     name: 'oftenWake',
@@ -121,7 +121,10 @@ export const sleep = ({ ageWomen, maleOrWomen }: Omit<ICommonAnswers, 'yourDiet'
     question: 'Do you have difficulties falling asleep?',
     variants: [{
       title: 'Yes',
-      vitaminsAdd: ['PASSIFLORA 500mg, PM', fallingAsleep],
+      vitaminsAdd: [
+        magnesium,
+        'PASSIFLORA 500mg, PM',
+      ],
     },
     { title: 'No' }],
   }, {
@@ -208,6 +211,40 @@ export const cvHealth: TQuestion[] = [{
   variants: [{
     title: 'Yes',
     vitaminsAdd: ['GARLIC 1500mg, AM'],
+  },
+  { title: 'No' }],
+}];
+
+export const jointHealth: TQuestion[] = [{
+  name: 'jointsFeel',
+  type: 'radio',
+  sectionName: 'Section',
+  question: 'Which of the following most accurately describes how your joints feel on a daily basis?',
+  variants: [{
+    title: 'Severe pain',
+    vitaminsAdd: ['CHONDROITIN SULFATE 400mg, AM'],
+  },
+  { title: 'Mild pain' },
+  { title: 'I dont have pain' },
+  ],
+}, {
+  name: 'jointPain',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you have exercise related joint pain?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['COLLAGEN PEPTIDES 5g, AM'],
+  },
+  { title: 'No' }],
+}, {
+  name: 'jointStiffness',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you have joint stiffness or restricted motion in your joints?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['TURMERIC 1000mg, AM'],
   },
   { title: 'No' }],
 }];
