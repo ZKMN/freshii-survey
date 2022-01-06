@@ -25,7 +25,7 @@ export type TQuestion = {
   sectionName: string;
   question: string;
   vitaminsAdd?: string[];
-  threeCols?: boolean;
+  colsMdSpan?: number;
   variants?: {
     title: string;
     vitaminsAdd?: string[];

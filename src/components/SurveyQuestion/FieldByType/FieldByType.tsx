@@ -14,7 +14,7 @@ export const FieldByType = ({ question }: IFieldByType) => {
   const [context, setContext] = useContext(Context);
 
   switch(question.type) {
-    case('text'): {
+    case('text'):
       return (
         <Input
           placeholder='Enter information'
@@ -30,35 +30,37 @@ export const FieldByType = ({ question }: IFieldByType) => {
           })}
         />
       );
-    }
-    case('radio'): {
+    case('radio'):
       return (
         <Group value={context[question.name]?.answer}>
-          {question.variants?.map(variant => (
-            <Radio
-              key={variant.title}
-              value={variant.title}
-              onChange={({ target }) => setContext({
-                ...context,
-                [question.name]: {
-                  name: question.name,
-                  answer: target.value,
-                  question: question.question,
-                  ...(variant?.shortAnswer && { shortAnswer: variant?.shortAnswer }),
-                  ...(variant?.infoForModal && { infoForModal: variant?.infoForModal }),
-                  ...(variant?.vitaminsAdd && target.value === variant.title && { vitaminsAdd: variant?.vitaminsAdd }),
-                  ...(variant?.vitaminsRemove &&
-                      target.value === variant.title && { vitaminsRemove: variant?.vitaminsRemove }),
-                },
-              })}
-            >
-              {variant.title}
-            </Radio>
-          ))}
+          <Row>
+            {question.variants?.map(variant => (
+              <Col key={variant.title} xs={24} md={question.colsMdSpan || 24}>
+                <Radio
+                  value={variant.title}
+                  onChange={({ target }) => setContext({
+                    ...context,
+                    [question.name]: {
+                      name: question.name,
+                      answer: target.value,
+                      question: question.question,
+                      ...(variant?.shortAnswer && { shortAnswer: variant?.shortAnswer }),
+                      ...(variant?.infoForModal && { infoForModal: variant?.infoForModal }),
+                      ...(variant?.vitaminsAdd && target.value === variant.title &&
+                            { vitaminsAdd: variant?.vitaminsAdd }),
+                      ...(variant?.vitaminsRemove &&
+                            target.value === variant.title && { vitaminsRemove: variant?.vitaminsRemove }),
+                    },
+                  })}
+                >
+                  {variant.title}
+                </Radio>
+              </Col>
+            ))}
+          </Row>
         </Group>
       );
-    }
-    case('buttons'): {
+    case('buttons'):
       return (
         <Row gutter={20}>
           {question.variants?.map(variant => (
@@ -85,14 +87,13 @@ export const FieldByType = ({ question }: IFieldByType) => {
 
         </Row>
       );
-    }
-    case('checkboxes'): {
+    case('checkboxes'):
       return (
         <Row>
-          <Col xs={24} md={question.threeCols ? 24 : 16}>
+          <Col xs={24} md={question.colsMdSpan ? 24 : 16}>
             <Row gutter={20}>
               {question.variants?.map(variant => (
-                <Col xs={24} md={question.threeCols ? 8 : 12} key={variant.title}>
+                <Col xs={24} md={question.colsMdSpan || 12} key={variant.title}>
                   <Checkbox
                     checked={!!context[question.name]?.choices?.find(choice => choice.title === variant.title)}
                     onChange={({ target }) => {
@@ -133,7 +134,6 @@ export const FieldByType = ({ question }: IFieldByType) => {
           </Col>
         </Row>
       );
-    }
 
     default:
       return null;

@@ -260,3 +260,65 @@ export const jointHealth: TQuestion[] = [{
   },
   { title: 'No' }],
 }];
+
+export const boneHealth = ({ ageWomen, maleOrWomen }: Omit<ICommonAnswers, 'yourDiet'>): TQuestion[] => {
+  const magnesium = (ageWomen === '> 50' || maleOrWomen === 'MEN') ? '+2 MAGNESIUM 150mg, PM' : 'MAGNESIUM 150mg, PM';
+
+  return [{
+    name: 'osteoporosis',
+    type: 'buttons',
+    sectionName: 'Section',
+    question: 'Do you or any members of your family have osteoporosis?',
+    variants: [{
+      title: 'Yes',
+      vitaminsAdd: [magnesium],
+    },
+    { title: 'No' }],
+  }, {
+    name: 'brokenBone',
+    type: 'buttons',
+    sectionName: 'Section',
+    question: 'Have you had a recent fracture or broken bone?',
+    variants: [{
+      title: 'Yes',
+      vitaminsAdd: [magnesium],
+    },
+    { title: 'No' }],
+  }];
+};
+
+export const skin: TQuestion[] = [{
+  name: 'yourSkin',
+  type: 'radio',
+  sectionName: 'Section',
+  question: 'How would you typically describe your skin:',
+  colsMdSpan: 12,
+  variants: [{
+    title: 'Flaking',
+    vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
+  }, {
+    title: 'Dry',
+    vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
+  }, {
+    title: 'Itching',
+    vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
+  }, {
+    title: 'Oily',
+    vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
+  }, {
+    title: 'Wrinkles',
+    vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
+  },
+  { title: 'No, my skin is perfect' },
+  ],
+}, {
+  name: 'skinFirmness',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Is anti-aging when it comes to maintaining skin firmness and addressing wrinkles a goal of yours?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
+  },
+  { title: 'No' }],
+}];

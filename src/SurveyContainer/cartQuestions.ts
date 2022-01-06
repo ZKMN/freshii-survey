@@ -1,6 +1,6 @@
 import { ICommonAnswers, TQuestion } from './types';
 
-import { cvHealth, energy, immunity, jointHealth, memoryAttention, sleep, stress } from './cartAdditionalQuestions';
+import { boneHealth, cvHealth, energy, immunity, jointHealth, memoryAttention, skin, sleep, stress } from './cartAdditionalQuestions';
 
 export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL 1200mg, AM';
@@ -49,14 +49,14 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }, {
       title: 'Energy',
       vitaminsAdd: ['B COMPLEX, AM'],
+      additionalQuestions: energy,
+    }, {
+      title: 'Sleep',
+      vitaminsAdd: ['MELATONIN 5mg, PM'],
       additionalQuestions: sleep({
         ageWomen,
         maleOrWomen,
       }),
-    }, {
-      title: 'Sleep',
-      vitaminsAdd: ['MELATONIN 5mg, PM'],
-      additionalQuestions: energy,
     }, {
       title: 'Stress',
       vitaminsAdd: [
@@ -75,6 +75,21 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
         'GLUCOSAMINE 500mg, AM',
       ],
       additionalQuestions: jointHealth,
+    }, {
+      title: 'Bone Health',
+      vitaminsAdd: [
+        'VITAMIN D3 1000ui, AM',
+        'CALCIUM CITRATE OR CARBONATE 500mg, AM',
+        '+2 MAGNESIUM CITRATE 150mg, PM',
+      ],
+      additionalQuestions: boneHealth({
+        ageWomen,
+        maleOrWomen,
+      }),
+    }, {
+      title: 'Skin',
+      vitaminsAdd: ['COLLAGEN PEPTIDES 5mg, AM'],
+      additionalQuestions: skin,
     }],
   },
   ...highestPriority,

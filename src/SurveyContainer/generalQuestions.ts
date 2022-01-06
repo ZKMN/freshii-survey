@@ -226,7 +226,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
 }, {
   name: 'medications',
   type: 'checkboxes',
-  threeCols: true,
+  colsMdSpan: 8,
   sectionName: 'Section',
   question: 'Do you have any of these conditions or take any of these medications?',
   variants: [{
