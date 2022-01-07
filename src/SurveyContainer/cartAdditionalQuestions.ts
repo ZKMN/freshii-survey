@@ -322,3 +322,103 @@ export const skin: TQuestion[] = [{
   },
   { title: 'No' }],
 }];
+
+export const hair: TQuestion[] = [{
+  name: 'yourHair',
+  type: 'radio',
+  sectionName: 'Section',
+  question: 'How would you describe your hair?',
+  colsMdSpan: 12,
+  variants: [{
+    title: 'Dry',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  }, {
+    title: 'Brittleness',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  }, {
+    title: 'Slow Growing',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  },
+  { title: 'No, my hair is perfect' },
+  ],
+}];
+
+export const nails: TQuestion[] = [{
+  name: 'yourNails',
+  type: 'radio',
+  sectionName: 'Section',
+  question: 'How would you describe your nails?',
+  colsMdSpan: 12,
+  variants: [{
+    title: 'Splitting',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  }, {
+    title: 'Cracking',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  }, {
+    title: 'Thickening',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  }, {
+    title: 'Breaking',
+    vitaminsAdd: ['KERATIN 10mg, AM'],
+  },
+  { title: 'No, my nails are strong' },
+  ],
+}];
+
+export const digestiveWellness: TQuestion[] = [{
+  name: 'nausea',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you have nausea or stomach discomfort multiple times a week?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['GINGER 500mg, AM'],
+  },
+  { title: 'No' }],
+}, {
+  name: 'followingExperience',
+  type: 'radio',
+  sectionName: 'Section',
+  question: 'Which of the following do you experience:',
+  colsMdSpan: 12,
+  variants: [{
+    title: 'Gas',
+    vitaminsAdd: ['PEPPERMINT, AM'],
+  }, {
+    title: 'Burping',
+    vitaminsAdd: ['PEPPERMINT, AM'],
+  }, {
+    title: 'Indigestion',
+    vitaminsAdd: ['PEPPERMINT, AM'],
+  }, {
+    title: 'Slow digestion',
+    vitaminsAdd: ['PEPPERMINT, AM'],
+  },
+  { title: 'None of the above' },
+  ],
+}, {
+  name: 'diarrhea',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do have diarrhea or liquid stools multiple times a week?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['PROBIOTICS, AM'],
+    vitaminsRemove: ['MAGNESIUM 150mg, PM'],
+  },
+  { title: 'No' }],
+}, {
+  name: 'bowelMovement',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Are you passing fewer than 3 stools a week, have lumpy or hard stools, or strain to have a bowel movement?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: [
+      'PROBIOTICS, AM',
+      'MAGNESIUM 150mg, PM',
+    ],
+  },
+  { title: 'No' }],
+}];

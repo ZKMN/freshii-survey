@@ -20,11 +20,11 @@
   }
 }
 
-.surveySlide {
+.surveyQuestionWrapper {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 0 40px 50px 80px;
+  padding: 0 40px 35px 80px;
 
   @include from-xs-to-md {
     padding: 0 15px 20px 15px;

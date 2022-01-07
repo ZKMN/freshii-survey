@@ -37,9 +37,7 @@ export const ModalInfo: React.FC<IModalInfo> = ({ content, showModal, toggleShow
         </Row>
 
         <Row className={styles.modalContent}>
-          <p>
-            {content}
-          </p>
+          <p>{content}</p>
         </Row>
 
         <Row className={styles.modalFooter}>
@@ -49,7 +47,7 @@ export const ModalInfo: React.FC<IModalInfo> = ({ content, showModal, toggleShow
             type='primary'
             onClick={toggleShowModal}
           >
-          OKAY
+            OKAY
           </Button>
         </Row>
       </div>

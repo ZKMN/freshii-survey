@@ -6,11 +6,7 @@ import { Context, TQuestion } from 'SurveyContainer';
 
 const { Group } = Radio;
 
-interface IFieldByType {
-  question: TQuestion;
-}
-
-export const FieldByType = ({ question }: IFieldByType) => {
+export const FieldByType = ({ question }: { question: TQuestion }) => {
   const [context, setContext] = useContext(Context);
 
   switch(question.type) {
@@ -134,7 +130,6 @@ export const FieldByType = ({ question }: IFieldByType) => {
           </Col>
         </Row>
       );
-
     default:
       return null;
   }

@@ -21,7 +21,7 @@ export const Survey: React.FC<ISurvey> = ({ children, currentPage }) => {
         }}
       />
 
-      <div className={styles.surveySlide}>
+      <div className={styles.surveyQuestionWrapper}>
         <Row justify='end' className={styles.page}>
           {currentPage}/{MAX_QUESTIONS}
         </Row>

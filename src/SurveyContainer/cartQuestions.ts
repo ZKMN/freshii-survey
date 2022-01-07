@@ -1,11 +1,14 @@
 import { ICommonAnswers, TQuestion } from './types';
 
-import { boneHealth, cvHealth, energy, immunity, jointHealth, memoryAttention, skin, sleep, stress } from './cartAdditionalQuestions';
+import {
+  boneHealth, cvHealth, digestiveWellness, energy, hair, immunity,
+  jointHealth, memoryAttention, nails, skin, sleep, stress,
+} from './cartAdditionalQuestions';
 
 export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
   const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL 1200mg, AM';
 
-  const additionalQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
+  const allAdditionalQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
 
     if(choice.additionalQuestions) {
       acc = [...acc, ...choice.additionalQuestions];
@@ -19,6 +22,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     type: 'radio',
     sectionName: 'Section',
     question: 'Which priority is at the top of your list?',
+    colsMdSpan: healthPriorChoices.length > 6 ? 8 : 12,
     variants: healthPriorChoices.map(choice => ({ title: choice.title })),
   }] : [];
 
@@ -27,6 +31,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     type: 'checkboxes',
     sectionName: 'Section',
     question: 'What are your top health priorities?',
+    colsMdSpan: 8,
     variants: [{
       title: 'General Health',
       vitaminsAdd: [
@@ -90,10 +95,22 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
       title: 'Skin',
       vitaminsAdd: ['COLLAGEN PEPTIDES 5mg, AM'],
       additionalQuestions: skin,
+    }, {
+      title: 'Hair',
+      vitaminsAdd: ['COLLAGEN PEPTIDES 5mg, AM'],
+      additionalQuestions: hair,
+    }, {
+      title: 'Nails',
+      vitaminsAdd: ['COLLAGEN PEPTIDES 5mg, AM'],
+      additionalQuestions: nails,
+    }, {
+      title: 'Digestive wellness',
+      vitaminsAdd: ['PROBIOTICS, AM'],
+      additionalQuestions: digestiveWellness,
     }],
   },
   ...highestPriority,
-  ...additionalQuestions,
+  ...allAdditionalQuestions,
   {
     name: 'stub',
     type: 'radio',

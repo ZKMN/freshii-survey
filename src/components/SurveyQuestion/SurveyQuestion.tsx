@@ -1,6 +1,6 @@
 import { Col, Row, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ModalInfo } from 'components';
 import { Context, TQuestion } from 'SurveyContainer';
@@ -8,7 +8,6 @@ import { Context, TQuestion } from 'SurveyContainer';
 import { FieldByType } from './FieldByType';
 
 import styles from './SurveyQuestion.module.scss';
-import clsx from 'clsx';
 
 interface ISurveyQuestion {
   title: string;
@@ -16,7 +15,7 @@ interface ISurveyQuestion {
   activePage: boolean;
 }
 
-export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage, question, title } ) => {
+export const SurveyQuestion: React.FC<ISurveyQuestion> = React.memo(({ children, activePage, question, title } ) => {
   const [context] = useContext(Context);
 
   const [modalText, setModalText] = useState('');
@@ -47,9 +46,9 @@ export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage
     return (
       <div className={styles.questionContainer}>
         <ModalInfo
+          content={modalText}
           showModal={showModal}
           toggleShowModal={() => setShowModal(!showModal)}
-          content={modalText}
         />
 
         <Row className={styles.questionMobileRow}>
@@ -79,7 +78,11 @@ export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage
                 </Row>
               </Col>
 
-              <Col xs={24} lg={14} className={clsx(question.type !== 'checkboxes' && styles.questionAnswersContainer)}>
+              <Col
+                xs={24}
+                lg={14}
+                className={styles.questionAnswersContainer}
+              >
                 <FieldByType question={question} />
               </Col>
 
@@ -94,4 +97,4 @@ export const SurveyQuestion: React.FC<ISurveyQuestion> = ({ children, activePage
   }
 
   return null;
-};
+});
