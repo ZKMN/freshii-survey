@@ -1,16 +1,16 @@
 import React, { useMemo, useState } from 'react';
 
-import { Navigation, Survey, SurveyQuestion } from 'components';
+import { ModalInfo, Navigation, Survey, SurveyQuestion } from 'components';
 
 import { cartQuestions } from './cartQuestions';
-// import { generalQuestions } from './generalQuestions';
+import { generalQuestions } from './generalQuestions';
 import { ICommonAnswers, TContext, TSetContext } from './types';
 
 export const Context = React.createContext<[TContext, TSetContext]>([{}, () => undefined]);
 
 export const SurveyContainer = () => {
   const [page, setPage] = useState(1);
-  // const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(true);
   const [context, setContext] = useState<TContext>({});
 
   const commonAnswers: ICommonAnswers = {
@@ -20,23 +20,22 @@ export const SurveyContainer = () => {
   };
 
   const optionsArr = useMemo(() => [
-    // ...generalQuestions(commonAnswers),
+    ...generalQuestions(commonAnswers),
     ...cartQuestions({
       ...commonAnswers,
       healthPriorChoices: context.healthPriorities?.choices,
     }),
   ], [context]);
 
-  // console.log(context);
   return (
     <Context.Provider value={[context, setContext]}>
       <Survey currentPage={page}>
 
-        {/* <ModalInfo
+        <ModalInfo
           showModal={showModal}
           toggleShowModal={() => setShowModal(!showModal)}
           content='Nice to meet you! Let’s take some time to get to know you better. It’ll only take 5 minutes!'
-        /> */}
+        />
 
         {optionsArr.map((question, index, arr) => (
           <SurveyQuestion
@@ -51,6 +50,7 @@ export const SurveyContainer = () => {
               setPage={setPage}
               question={question}
               isLastQuestion={index + 1 === arr.length}
+              commonAnswers={commonAnswers}
             />
 
           </SurveyQuestion>

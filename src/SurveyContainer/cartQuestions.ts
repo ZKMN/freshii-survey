@@ -35,7 +35,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     variants: [{
       title: 'General Health',
       vitaminsAdd: [
-        'PROBIOTIC',
+        'PROBIOTICS, AM',
         `MULTIVITAMIN FOR ${maleOrWomen}`,
         omegaOrOil,
       ],
@@ -43,7 +43,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }, {
       title: 'Immunity',
       vitaminsAdd: [
-        'PROBIOTIC',
+        'PROBIOTICS, AM',
         'VITAMIN D3 400ui, AM',
       ],
       additionalQuestions: immunity,
@@ -84,7 +84,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
       title: 'Bone Health',
       vitaminsAdd: [
         'VITAMIN D3 1000ui, AM',
-        'CALCIUM CITRATE OR CARBONATE 500mg, AM',
+        'CALCIUM CITRATE 250mg, AM OR CARBONATE 500mg, AM',
         '+2 MAGNESIUM CITRATE 150mg, PM',
       ],
       additionalQuestions: boneHealth({
@@ -110,11 +110,5 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }],
   },
   ...highestPriority,
-  ...allAdditionalQuestions,
-  {
-    name: 'stub',
-    type: 'radio',
-    sectionName: 'stub',
-    question: 'stub',
-  }];
+  ...allAdditionalQuestions];
 };

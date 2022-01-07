@@ -1,24 +1,31 @@
 import { Row } from 'antd';
 import { useContext } from 'react';
 
-import { Context, TQuestion } from 'SurveyContainer';
+import { Context, ICommonAnswers, TQuestion } from 'SurveyContainer';
+
+import { getSurveyVitamins } from './navigationHelpers';
 
 import styles from './Navigation.module.scss';
 
 interface INavigation {
   page: number;
   question: TQuestion;
+  commonAnswers: ICommonAnswers;
   isLastQuestion: boolean;
   setPage: (fn: (prevState: number) => number) => void;
 }
 
-export const Navigation = ({ isLastQuestion, question, page, setPage }: INavigation) => {
+export const Navigation = ({ isLastQuestion, commonAnswers, question, page, setPage }: INavigation) => {
   const [context] = useContext(Context);
 
   const disableButton =
     (!context[question.name]?.answer && !context[question.name]?.choices?.length) ||
     context.ageWomen?.answer === '< 16' ||
     context.ageMale?.answer === '< 16';
+
+  const handleSaveSurveyResult = () => sessionStorage.setItem('surveyResult', JSON.stringify(context));
+
+  getSurveyVitamins(context, commonAnswers.yourDiet);
 
   return (
     <Row justify={page !== 1 ? 'space-between' : 'end'}>
@@ -37,7 +44,7 @@ export const Navigation = ({ isLastQuestion, question, page, setPage }: INavigat
 
       <button
         className={styles.nextNav}
-        onClick={isLastQuestion ? undefined : () => setPage(prevState => prevState + 1)}
+        onClick={isLastQuestion ? handleSaveSurveyResult : () => setPage(prevState => prevState + 1)}
         disabled={disableButton}
       >
         {isLastQuestion ? 'Submit' : 'Continue'}

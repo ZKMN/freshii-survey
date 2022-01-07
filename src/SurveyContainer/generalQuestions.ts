@@ -13,9 +13,9 @@ const menQuestions: TQuestion[] = [{
   {
     title: '> 50',
     vitaminsAdd: [
-      'VITAMIN D3 1000ui',
+      'VITAMIN D3 1000ui, AM',
       'CALCIUM CITRATE 250mg, AM + PM',
-      '+2 MAGNESIUM CITRATE 150mg X2',
+      '+2 MAGNESIUM CITRATE 150mg, PM',
     ],
     vitaminsRemove: ['MULTIVITAMIN FOR MEN'],
   }],
@@ -43,11 +43,11 @@ const femaleAdditionalQuestions: TQuestion[] = [{
         'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
       ],
       vitaminsRemove: [
-        'RHODIOLA',
+        'RHODIOLA 300mg, AM',
         'ASHWAGANDHA 250mg, AM',
         'PASSIONFLOWER',
         'MELATONIN 5mg, PM',
-        'VALERIAN',
+        'VALERIAN 500mg, PM',
       ],
     }],
 }];
@@ -65,9 +65,9 @@ const womenQuestions = (ageWomen?: string): TQuestion[] => [{
   {
     title: '> 50',
     vitaminsAdd: [
-      'VITAMIN D3 1000ui',
+      'VITAMIN D3 1000ui, AM',
       'CALCIUM CITRATE 250mg, AM + PM',
-      'MAGNESIUM CITRATE 150mg',
+      'MAGNESIUM CITRATE 150mg, PM',
     ],
     vitaminsRemove: ['MULTIVITAMIN FOR WOMEN'],
   }],
@@ -162,7 +162,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   variants: [{
     title: 'Yes',
     vitaminsRemove: [
-      'OMEGA (VEGAN EPA-DHA)' ,
+      'OMEGA (VEGAN EPA-DHA)',
       'FISH OIL 1200mg, AM',
     ],
   },
@@ -197,7 +197,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   question: 'Are you looking to boost your metabolism or manage your weight?',
   variants: [{
     title: 'Yes',
-    vitaminsAdd: ['GREEN TEA EXTRACT 400mg, AM'],
+    vitaminsAdd: ['GREENTEA EXTRACT 400mg, AM'],
   },
   { title: 'No' }],
 }, {
@@ -220,7 +220,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   question: 'I spend the majority of my time from November to March in Canada. Understanding your lifestyle will help us to make an informed vitamin D recommendation.',
   variants: [{
     title: 'Yes',
-    vitaminsAdd: ['VITAMIN D3 1000ui'],
+    vitaminsAdd: ['VITAMIN D3 1000ui, AM'],
   },
   { title: 'No' }],
 }, {
@@ -234,7 +234,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     vitaminsRemove: ['CALCIUM'],
   }, {
     title: 'Antibiotics',
-    vitaminsAdd: ['PROBIOTICS'],
+    vitaminsAdd: ['PROBIOTICS, AM'],
   }, {
     title: 'Dementia',
     vitaminsRemove: ['MELATONIN 5mg, PM'],
@@ -244,7 +244,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
     infoForModal: 'Allow a delay of 2 hours before or after taking Calcium and Magnesium, Zinc',
   }, {
     title: 'Liver disease',
-    vitaminsRemove: ['GREENTEA EXTRACT'],
+    vitaminsRemove: ['GREENTEA EXTRACT 400mg, AM'],
   }, {
     title: 'Diuretics',
     infoForModal: 'Consult your Pharamacist before taking Magnesium',
@@ -254,12 +254,12 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   }, {
     title: 'HTA or High Blood Pressure medication',
     vitaminsRemove: [
-      'GREENTEA EXTRACT',
+      'GREENTEA EXTRACT 400mg, AM',
       'GINSENG',
     ],
   }, {
     title: 'Chohn Disease or Celiac Disease',
-    vitaminsAdd: ['VITAMIN D3 1000ui'],
+    vitaminsAdd: ['VITAMIN D3 1000ui, AM'],
   }, {
     title: 'Epilepsy',
     vitaminsRemove: ['MELATONIN 5mg, PM'],
@@ -273,7 +273,7 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
       'OMEGA (VEGAN EPA-DHA)',
       'TURMERIC 1000mg, AM',
       'GINGKO',
-      'GINGER',
+      'GINGER 500mg, AM',
     ],
   }],
 }];

@@ -7,7 +7,7 @@ interface ISurvey {
 }
 
 export const Survey: React.FC<ISurvey> = ({ children, currentPage }) => {
-  const MAX_QUESTIONS = 25;
+  const MAX_QUESTIONS = 40;
 
   return (
     <div className={styles.surveyContainer}>

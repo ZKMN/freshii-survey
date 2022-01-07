@@ -8,7 +8,7 @@ export const immunity: TQuestion[] = [{
   variants: [{
     title: 'Yes',
     vitaminsAdd: [
-      'VITAMIN C 500mg',
+      'VITAMIN C 500mg, AM',
       'ZINC SULFATE 100mg, AM',
       '+2 ECHINACEA PURPURA(6:1 root extract) 125mg/750mg, AM + PM',
     ],
@@ -22,7 +22,7 @@ export const immunity: TQuestion[] = [{
   variants: [{
     title: 'Yes',
     vitaminsAdd: [
-      'VITAMIN C 500mg',
+      'VITAMIN C 500mg, AM',
       'ZINC SULFATE 100mg, AM',
       '+2 ECHINACEA PURPURA(6:1 root extract) 125mg/750mg, AM + PM',
     ],
@@ -36,7 +36,7 @@ export const immunity: TQuestion[] = [{
   variants: [{
     title: 'Yes',
     vitaminsAdd: [
-      'VITAMIN C 500mg',
+      'VITAMIN C 500mg, AM',
       'ZINC SULFATE 100mg, AM',
       '+2 ECHINACEA PURPURA(6:1 root extract) 125mg/750mg, AM + PM',
     ],
@@ -193,13 +193,13 @@ export const cvHealth: TQuestion[] = [{
     title: 'Rarely/Never',
     vitaminsAdd: [
       'VITAMIN C 500mg, AM',
-      'GREEN TEA 400mg, AM',
+      'GREENTEA EXTRACT 400mg, AM',
     ],
   }, {
     title: '1/2 times a week',
     vitaminsAdd: [
       'VITAMIN C 500mg, AM',
-      'GREEN TEA 400mg, AM',
+      'GREENTEA EXTRACT 400mg, AM',
     ],
   },
   { title: '3-4 days a week' },
@@ -404,8 +404,10 @@ export const digestiveWellness: TQuestion[] = [{
   question: 'Do have diarrhea or liquid stools multiple times a week?',
   variants: [{
     title: 'Yes',
-    vitaminsAdd: ['PROBIOTICS, AM'],
-    vitaminsRemove: ['MAGNESIUM 150mg, PM'],
+    vitaminsRemove: [
+      'MAGNESIUM 150mg, PM',
+      'MAGNESIUM CITRATE 150mg, PM',
+    ],
   },
   { title: 'No' }],
 }, {
@@ -415,10 +417,7 @@ export const digestiveWellness: TQuestion[] = [{
   question: 'Are you passing fewer than 3 stools a week, have lumpy or hard stools, or strain to have a bowel movement?',
   variants: [{
     title: 'Yes',
-    vitaminsAdd: [
-      'PROBIOTICS, AM',
-      'MAGNESIUM 150mg, PM',
-    ],
+    vitaminsAdd: ['MAGNESIUM 150mg, PM'],
   },
   { title: 'No' }],
 }];

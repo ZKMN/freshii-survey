@@ -7,7 +7,7 @@ type TChoice = {
   additionalQuestions?: TQuestion[];
 }
 
-type TQuestionAnswer = {
+export type TQuestionAnswer = {
   name: string;
   answer?: string;
   shortAnswer?: string;
