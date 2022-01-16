@@ -80,10 +80,10 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
   type: 'text',
   sectionName: 'Section',
   question: 'What is your name?',
-  vitaminsAdd: [
-    'MULTIVITAMIN',
-    'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
-  ],
+  // vitaminsAdd: [
+  //   'MULTIVITAMIN',
+  //   'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
+  // ],
 }, {
   name: 'sex',
   type: 'radio',
@@ -226,12 +226,12 @@ export const generalQuestions = ({ maleOrWomen, ageWomen, yourDiet }: ICommonAns
 }, {
   name: 'medications',
   type: 'checkboxes',
-  colsMdSpan: 8,
+  colMdSpan: 8,
   sectionName: 'Section',
   question: 'Do you have any of these conditions or take any of these medications?',
   variants: [{
     title: 'Lithium',
-    vitaminsRemove: ['CALCIUM'],
+    vitaminsRemove: ['CALCIUM CITRATE 250mg, AM'],
   }, {
     title: 'Antibiotics',
     vitaminsAdd: ['PROBIOTICS, AM'],

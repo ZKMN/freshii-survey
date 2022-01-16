@@ -5,8 +5,8 @@ import {
   jointHealth, memoryAttention, nails, skin, sleep, stress,
 } from './cartAdditionalQuestions';
 
-export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
-  const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL 1200mg, AM';
+export const cartQuestions = ({ maleOrWomen, ageWomen, healthPriorChoices }: ICommonAnswers): TQuestion[] => {
+  const magnesium = (ageWomen === '> 50' || maleOrWomen === 'MEN') ? '+2 MAGNESIUM 150mg, PM' : 'MAGNESIUM 150mg, PM';
 
   const allAdditionalQuestions = healthPriorChoices?.reduce<TQuestion[]>((acc, choice) => {
 
@@ -22,7 +22,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     type: 'radio',
     sectionName: 'Section',
     question: 'Which priority is at the top of your list?',
-    colsMdSpan: healthPriorChoices.length > 6 ? 8 : 12,
+    colMdSpan: healthPriorChoices.length > 6 ? 8 : 12,
     variants: healthPriorChoices.map(choice => ({ title: choice.title })),
   }] : [];
 
@@ -31,13 +31,13 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     type: 'checkboxes',
     sectionName: 'Section',
     question: 'What are your top health priorities?',
-    colsMdSpan: 8,
+    colMdSpan: 8,
     variants: [{
       title: 'General Health',
       vitaminsAdd: [
         'PROBIOTICS, AM',
         `MULTIVITAMIN FOR ${maleOrWomen}`,
-        omegaOrOil,
+        'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
       ],
       vitaminsRemove: ['IRON 10mg, PM'],
     }, {
@@ -49,8 +49,8 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
       additionalQuestions: immunity,
     }, {
       title: 'Memory & Attention',
-      vitaminsAdd: [omegaOrOil],
-      additionalQuestions: memoryAttention(omegaOrOil),
+      vitaminsAdd: ['OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM'],
+      additionalQuestions: memoryAttention,
     }, {
       title: 'Energy',
       vitaminsAdd: ['B COMPLEX, AM'],
@@ -58,10 +58,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }, {
       title: 'Sleep',
       vitaminsAdd: ['MELATONIN 5mg, PM'],
-      additionalQuestions: sleep({
-        ageWomen,
-        maleOrWomen,
-      }),
+      additionalQuestions: sleep(magnesium),
     }, {
       title: 'Stress',
       vitaminsAdd: [
@@ -71,12 +68,12 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
       additionalQuestions: stress,
     }, {
       title: 'CV Health',
-      vitaminsAdd: [omegaOrOil],
+      vitaminsAdd: ['OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM'],
       additionalQuestions: cvHealth,
     }, {
       title: 'Joint Health',
       vitaminsAdd: [
-        omegaOrOil,
+        'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
         'GLUCOSAMINE 500mg, AM',
       ],
       additionalQuestions: jointHealth,
@@ -87,10 +84,7 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
         'CALCIUM CITRATE 250mg, AM OR CARBONATE 500mg, AM',
         '+2 MAGNESIUM CITRATE 150mg, PM',
       ],
-      additionalQuestions: boneHealth({
-        ageWomen,
-        maleOrWomen,
-      }),
+      additionalQuestions: boneHealth(magnesium),
     }, {
       title: 'Skin',
       vitaminsAdd: ['COLLAGEN PEPTIDES 5mg, AM'],
@@ -110,5 +104,12 @@ export const cartQuestions = ({ maleOrWomen, ageWomen, yourDiet, healthPriorChoi
     }],
   },
   ...highestPriority,
-  ...allAdditionalQuestions];
+  ...allAdditionalQuestions,
+  {
+    name: 'submitSurvey',
+    type: null,
+    sectionName: 'Section',
+    title: 'Create your personalized recommendation',
+    question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  }];
 };

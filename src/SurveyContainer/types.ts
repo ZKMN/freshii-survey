@@ -20,12 +20,13 @@ export type TQuestionAnswer = {
 
 export type TQuestion = {
   name: string;
-  type: 'radio' | 'text' | 'buttons' | 'checkboxes';
+  type: 'radio' | 'text' | 'buttons' | 'checkboxes' | null;
+  title?: string;
   infoTooltip?: string;
   sectionName: string;
   question: string;
   vitaminsAdd?: string[];
-  colsMdSpan?: number;
+  colMdSpan?: number;
   variants?: {
     title: string;
     vitaminsAdd?: string[];

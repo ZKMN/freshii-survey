@@ -1,43 +1,64 @@
 import { ICommonAnswers, TContext, TQuestionAnswer } from 'SurveyContainer';
 
 export const getSurveyVitamins = (context: TContext, yourDiet: ICommonAnswers['yourDiet']) => {
-  const surveyResult = JSON.parse(localStorage.getItem('surveyResult') as string);
+  const surveyResult = JSON.parse(sessionStorage.getItem('surveyResult') as string);
   const surveyResultValues: TQuestionAnswer[] = Object.values(surveyResult || context);
 
-  const handlePush = (arrForPush: string[], vitam: string) => {
+  const handlePushUniqVitamin = (arrForPush: string[]) => (pushingVitamin: string) => {
     const omegaOrOil = yourDiet === 'vegan' || yourDiet === 'vegetarian' ? 'OMEGA (VEGAN EPA-DHA)' : 'FISH OIL 1200mg, AM';
-    const vitamin = vitam === 'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM' ? omegaOrOil : vitam;
+    const vitamin = pushingVitamin === 'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM' ? omegaOrOil : pushingVitamin;
 
     if(!arrForPush.includes(vitamin)) {
       arrForPush.push(vitamin);
     }
   };
 
-  const surveyResultVitamins = surveyResultValues.reduce((acc, answer) => {
+  const surveyUniqVitamins = surveyResultValues.reduce((acc, answer) => {
+    const pushInAdd = handlePushUniqVitamin(acc.addedVitamins);
+    const pushInRemove = handlePushUniqVitamin(acc.removedVitamins);
 
     answer.choices?.forEach(choice => {
-      choice.vitaminsAdd?.forEach(addVitamin => {
-        handlePush(acc.addVitamins, addVitamin);
-      });
+      choice.vitaminsAdd?.forEach(pushInAdd);
 
-      choice.vitaminsRemove?.forEach(removeVitamin => {
-        handlePush(acc.removeVitamins, removeVitamin);
-      });
+      choice.vitaminsRemove?.forEach(pushInRemove);
     });
 
-    answer.vitaminsAdd?.forEach(addVitamin => {
-      handlePush(acc.addVitamins, addVitamin);
-    });
+    answer.vitaminsAdd?.forEach(pushInAdd);
 
-    answer.vitaminsRemove?.forEach(removeVitamin => {
-      handlePush(acc.removeVitamins, removeVitamin);
-    });
+    answer.vitaminsRemove?.forEach(pushInRemove);
 
     return acc;
   }, {
-    addVitamins: [],
-    removeVitamins: [],
+    addedVitamins: [],
+    removedVitamins: [],
   });
 
-  console.log(surveyResultVitamins);
+  surveyUniqVitamins.addedVitamins.sort();
+  surveyUniqVitamins.removedVitamins.sort();
+
+  const findInRemovedVitamins = (addVitamin: string) => !surveyUniqVitamins.removedVitamins.find(removeVitamin => {
+
+    if(addVitamin.includes(removeVitamin)) {
+      return addVitamin;
+    }
+
+  });
+
+  const addedVitamins: string[] = surveyUniqVitamins.addedVitamins.filter(findInRemovedVitamins);
+
+  const preparedVitamins = addedVitamins.map(vitamin => {
+    const vitaminObj = {
+      am: !!vitamin.endsWith('AM') || !!vitamin.endsWith('AM + PM'),
+      pm: !!vitamin.endsWith('PM') || !!vitamin.endsWith('AM + PM'),
+      name: vitamin.replace('+2 ', '').replace(', AM + PM', '').replace(', AM', '').replace(', PM', ''),
+      quantity: vitamin.startsWith('+2') ? 2 : 1,
+    };
+
+    return vitaminObj;
+  });
+
+  return {
+    preparedVitamins,
+    surveyUniqVitamins,
+  };
 };

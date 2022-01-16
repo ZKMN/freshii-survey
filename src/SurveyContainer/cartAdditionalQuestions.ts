@@ -1,4 +1,4 @@
-import { ICommonAnswers, TQuestion } from './types';
+import { TQuestion } from './types';
 
 export const immunity: TQuestion[] = [{
   name: 'catchColds',
@@ -44,7 +44,7 @@ export const immunity: TQuestion[] = [{
   { title: 'No' }],
 }];
 
-export const memoryAttention = (omegaOrOil: string): TQuestion[] => [{
+export const memoryAttention: TQuestion[] = [{
   name: 'boostBrain',
   type: 'buttons',
   sectionName: 'Section',
@@ -63,7 +63,7 @@ export const memoryAttention = (omegaOrOil: string): TQuestion[] => [{
     title: 'Yes',
     vitaminsAdd: [
       'RHODIOLA 300mg, AM',
-      omegaOrOil,
+      'OMEGA (VEGAN EPA-DHA) OR FISH OIL 1200mg, AM',
     ],
   },
   { title: 'No' }],
@@ -113,44 +113,40 @@ export const energy: TQuestion[] = [{
   }],
 }];
 
-export const sleep = ({ ageWomen, maleOrWomen }: Omit<ICommonAnswers, 'yourDiet'>): TQuestion[] => {
-  const magnesium = (ageWomen === '> 50' || maleOrWomen === 'MEN') ? '+2 MAGNESIUM 150mg, PM' : 'MAGNESIUM 150mg, PM';
-
-  return [{
-    name: 'oftenWake',
-    type: 'buttons',
-    sectionName: 'Section',
-    question: 'Do you wake up often during the night or sleep only a few hours?',
-    variants: [{
-      title: 'Yes',
-      vitaminsAdd: ['VALERIAN 500mg, PM'],
-    },
-    { title: 'No' }],
-  }, {
-    name: 'fallingAsleep',
-    type: 'buttons',
-    sectionName: 'Section',
-    question: 'Do you have difficulties falling asleep?',
-    variants: [{
-      title: 'Yes',
-      vitaminsAdd: [
-        magnesium,
-        'PASSIFLORA 500mg, PM',
-      ],
-    },
-    { title: 'No' }],
-  }, {
-    name: 'oftenTired',
-    type: 'buttons',
-    sectionName: 'Section',
-    question: 'Do you often feel tired or groggy upon waking up?',
-    variants: [{
-      title: 'Yes',
-      vitaminsAdd: ['CHAMOMILE 350mg, PM'],
-    },
-    { title: 'No' }],
-  }];
-};
+export const sleep = (magnesium: string): TQuestion[] => [{
+  name: 'oftenWake',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you wake up often during the night or sleep only a few hours?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['VALERIAN 500mg, PM'],
+  },
+  { title: 'No' }],
+}, {
+  name: 'fallingAsleep',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you have difficulties falling asleep?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: [
+      magnesium,
+      'PASSIFLORA 500mg, PM',
+    ],
+  },
+  { title: 'No' }],
+}, {
+  name: 'oftenTired',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you often feel tired or groggy upon waking up?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: ['CHAMOMILE 350mg, PM'],
+  },
+  { title: 'No' }],
+}];
 
 export const stress: TQuestion[] = [{
   name: 'oftenWorry',
@@ -246,7 +242,7 @@ export const jointHealth: TQuestion[] = [{
   question: 'Do you have exercise related joint pain?',
   variants: [{
     title: 'Yes',
-    vitaminsAdd: ['COLLAGEN PEPTIDES 5g, AM'],
+    vitaminsAdd: ['COLLAGEN PEPTIDES 5mg, AM'],
   },
   { title: 'No' }],
 }, {
@@ -261,38 +257,34 @@ export const jointHealth: TQuestion[] = [{
   { title: 'No' }],
 }];
 
-export const boneHealth = ({ ageWomen, maleOrWomen }: Omit<ICommonAnswers, 'yourDiet'>): TQuestion[] => {
-  const magnesium = (ageWomen === '> 50' || maleOrWomen === 'MEN') ? '+2 MAGNESIUM 150mg, PM' : 'MAGNESIUM 150mg, PM';
-
-  return [{
-    name: 'osteoporosis',
-    type: 'buttons',
-    sectionName: 'Section',
-    question: 'Do you or any members of your family have osteoporosis?',
-    variants: [{
-      title: 'Yes',
-      vitaminsAdd: [magnesium],
-    },
-    { title: 'No' }],
-  }, {
-    name: 'brokenBone',
-    type: 'buttons',
-    sectionName: 'Section',
-    question: 'Have you had a recent fracture or broken bone?',
-    variants: [{
-      title: 'Yes',
-      vitaminsAdd: [magnesium],
-    },
-    { title: 'No' }],
-  }];
-};
+export const boneHealth = (magnesium: string): TQuestion[] => [{
+  name: 'osteoporosis',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Do you or any members of your family have osteoporosis?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: [magnesium],
+  },
+  { title: 'No' }],
+}, {
+  name: 'brokenBone',
+  type: 'buttons',
+  sectionName: 'Section',
+  question: 'Have you had a recent fracture or broken bone?',
+  variants: [{
+    title: 'Yes',
+    vitaminsAdd: [magnesium],
+  },
+  { title: 'No' }],
+}];
 
 export const skin: TQuestion[] = [{
   name: 'yourSkin',
   type: 'radio',
   sectionName: 'Section',
   question: 'How would you typically describe your skin:',
-  colsMdSpan: 12,
+  colMdSpan: 12,
   variants: [{
     title: 'Flaking',
     vitaminsAdd: ['CERAMID 5mg GLYCOSYLCERAMIDES, AM'],
@@ -328,7 +320,7 @@ export const hair: TQuestion[] = [{
   type: 'radio',
   sectionName: 'Section',
   question: 'How would you describe your hair?',
-  colsMdSpan: 12,
+  colMdSpan: 12,
   variants: [{
     title: 'Dry',
     vitaminsAdd: ['KERATIN 10mg, AM'],
@@ -348,7 +340,7 @@ export const nails: TQuestion[] = [{
   type: 'radio',
   sectionName: 'Section',
   question: 'How would you describe your nails?',
-  colsMdSpan: 12,
+  colMdSpan: 12,
   variants: [{
     title: 'Splitting',
     vitaminsAdd: ['KERATIN 10mg, AM'],
@@ -381,7 +373,7 @@ export const digestiveWellness: TQuestion[] = [{
   type: 'radio',
   sectionName: 'Section',
   question: 'Which of the following do you experience:',
-  colsMdSpan: 12,
+  colMdSpan: 12,
   variants: [{
     title: 'Gas',
     vitaminsAdd: ['PEPPERMINT, AM'],

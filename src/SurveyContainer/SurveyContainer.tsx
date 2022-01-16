@@ -19,7 +19,7 @@ export const SurveyContainer = () => {
     ageWomen: context.ageWomen?.answer as ICommonAnswers['ageWomen'],
   };
 
-  const optionsArr = useMemo(() => [
+  const surveyQuestions = useMemo(() => [
     ...generalQuestions(commonAnswers),
     ...cartQuestions({
       ...commonAnswers,
@@ -27,9 +27,14 @@ export const SurveyContainer = () => {
     }),
   ], [context]);
 
+  const isLastQuestion = page === surveyQuestions.length;
+
   return (
     <Context.Provider value={[context, setContext]}>
-      <Survey currentPage={page}>
+      <Survey
+        currentPage={page}
+        isLastQuestion={isLastQuestion}
+      >
 
         <ModalInfo
           showModal={showModal}
@@ -37,19 +42,19 @@ export const SurveyContainer = () => {
           content='Nice to meet you! Let’s take some time to get to know you better. It’ll only take 5 minutes!'
         />
 
-        {optionsArr.map((question, index, arr) => (
+        {surveyQuestions.map((question, index) => (
           <SurveyQuestion
             key={question.name}
             question={question}
             activePage={page === index + 1}
-            title={`Question ${index + 1}`}
+            title={question.title || `Question ${index + 1}`}
           >
 
             <Navigation
               page={page}
               setPage={setPage}
               question={question}
-              isLastQuestion={index + 1 === arr.length}
+              isLastQuestion={isLastQuestion}
               commonAnswers={commonAnswers}
             />
 

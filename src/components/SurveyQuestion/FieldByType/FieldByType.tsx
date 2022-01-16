@@ -31,7 +31,7 @@ export const FieldByType = ({ question }: { question: TQuestion }) => {
         <Group value={context[question.name]?.answer}>
           <Row>
             {question.variants?.map(variant => (
-              <Col key={variant.title} xs={24} md={question.colsMdSpan || 24}>
+              <Col key={variant.title} xs={24} md={question.colMdSpan || 24}>
                 <Radio
                   value={variant.title}
                   onChange={({ target }) => setContext({
@@ -86,10 +86,10 @@ export const FieldByType = ({ question }: { question: TQuestion }) => {
     case('checkboxes'):
       return (
         <Row>
-          <Col xs={24} md={question.colsMdSpan ? 24 : 16}>
+          <Col xs={24} md={question.colMdSpan ? 24 : 16}>
             <Row gutter={20}>
               {question.variants?.map(variant => (
-                <Col xs={24} md={question.colsMdSpan || 12} key={variant.title}>
+                <Col xs={24} md={question.colMdSpan || 12} key={variant.title}>
                   <Checkbox
                     checked={!!context[question.name]?.choices?.find(choice => choice.title === variant.title)}
                     onChange={({ target }) => {

@@ -18,8 +18,7 @@ interface INavigation {
 export const Navigation = ({ isLastQuestion, commonAnswers, question, page, setPage }: INavigation) => {
   const [context] = useContext(Context);
 
-  const disableButton =
-    (!context[question.name]?.answer && !context[question.name]?.choices?.length) ||
+  const disableButton = (!context[question.name]?.answer && !context[question.name]?.choices?.length) ||
     context.ageWomen?.answer === '< 16' ||
     context.ageMale?.answer === '< 16';
 
